@@ -14,11 +14,11 @@ class QuestionAdapter (private val questionList: ArrayList<Question>) : Recycler
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         val questionText = itemView.findViewById<TextView>(R.id.tvQuestion)
-        val answerA = itemView.findViewById<TextView>(R.id.rbAnswerA)
-        val answerB = itemView.findViewById<TextView>(R.id.rbAnswerB)
-        val answerC = itemView.findViewById<TextView>(R.id.rbAnswerC)
-        val answerD = itemView.findViewById<TextView>(R.id.rbAnswerD)
-        val answerE = itemView.findViewById<TextView>(R.id.rbAnswerE)
+        val answerA = itemView.findViewById<TextView>(R.id.rbAnsA)
+        val answerB = itemView.findViewById<TextView>(R.id.rbAnsB)
+        val answerC = itemView.findViewById<TextView>(R.id.rbAnsC)
+        val answerD = itemView.findViewById<TextView>(R.id.rbAnsD)
+        val answerE = itemView.findViewById<TextView>(R.id.rbAnsE)
 
     }
 

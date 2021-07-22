@@ -27,7 +27,7 @@
         android:layout_height="match_parent">
 
         <RadioButton
-            android:id="@+id/rbAnswerA"
+            android:id="@+id/rbAnsA"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
@@ -35,7 +35,7 @@
             android:text="Answer A" />
 
         <RadioButton
-            android:id="@+id/rbAnswerB"
+            android:id="@+id/rbAnsB"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
@@ -43,7 +43,7 @@
             android:text="Answer B" />
 
         <RadioButton
-            android:id="@+id/rbAnswerC"
+            android:id="@+id/rbAnsC"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
@@ -51,7 +51,7 @@
             android:text="Answer C" />
 
         <RadioButton
-            android:id="@+id/rbAnswerD"
+            android:id="@+id/rbAnsD"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
@@ -59,7 +59,7 @@
             android:text="Answer D" />
 
         <RadioButton
-            android:id="@+id/rbAnswerE"
+            android:id="@+id/rbAnsE"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
@@ -67,10 +67,4 @@
             android:text="Answer E" />
 
     </RadioGroup>
-
-    <Button
-        android:id="@+id/button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Button" />
 </LinearLayout>
