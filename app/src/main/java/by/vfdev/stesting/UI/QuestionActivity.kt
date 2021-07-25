@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.util.Log
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -20,48 +21,41 @@ import java.util.concurrent.TimeUnit
 
 class QuestionActivity : AppCompatActivity() {
 
-    var timeTest = Common.TOTAL_TIME
-
     lateinit var adapter : GridAnswerAdapter
     lateinit var countDownTimer: CountDownTimer
 
     private lateinit var dbref: DatabaseReference
     private lateinit var questionRecyclerview: RecyclerView
-    private lateinit var questionList : ArrayList<Question>
 
     lateinit var viewModel: QuestionViewModel
+    var timeTest = Common.TOTAL_TIME
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_question)
 
-        questionRecyclerview = findViewById(R.id.grid_answer)
+        questionRecyclerview = findViewById(R.id.gridAnswer)
         questionRecyclerview.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         questionRecyclerview.setHasFixedSize(true)
 
-        // viewModel = ViewModelProvider(this).get(QuestionViewModel::class.java)
-        // val vm = ViewModelProvider(this).get(QuestionViewModel::class.java)
-
         viewModel = ViewModelProvider(this, MyFactory.getInstance()).get(QuestionViewModel::class.java)
-
-        questionList = arrayListOf<Question>()
 
         getQuestionData()
         countTimer()
         genItems()
 
-        grid_answer.setHasFixedSize(true)
-        if(questionList.size > 0)
-            grid_answer.layoutManager = GridLayoutManager(this,
-                if(questionList.size > 5) questionList.size / 2 else questionList.size)
+        gridAnswer.setHasFixedSize(true)
+        if(viewModel.questionList.size > 0)
+            gridAnswer.layoutManager = GridLayoutManager(this,
+                if(viewModel.questionList.size > 5) viewModel.questionList.size / 2 else viewModel.questionList.size)
         adapter = GridAnswerAdapter(this, Common.answerSheetList)
-        grid_answer.adapter = adapter
+        gridAnswer.adapter = adapter
 
         // Generation Fragment List
         genFragmentList()
 
         val fragmentAdapter = FragmentAdapter(supportFragmentManager, this, Common.fragmentList)
-        view_pager.offscreenPageLimit = questionList.size
+        view_pager.offscreenPageLimit = viewModel.questionList.size
 
         // Bind question to View Pager
         view_pager.adapter = fragmentAdapter
@@ -70,7 +64,7 @@ class QuestionActivity : AppCompatActivity() {
     }
 
     private fun genFragmentList() {
-        for(i in questionList.indices) {
+        for(i in viewModel.questionList.indices) {
             val bundle = Bundle()
             bundle.putInt("index", i)
             val fragment = QuestionFragment()
@@ -81,7 +75,7 @@ class QuestionActivity : AppCompatActivity() {
     }
 
     private fun genItems() {
-        for(i in questionList.indices) {
+        for(i in viewModel.questionList.indices) {
 
             // No answer for all question
             Common.answerSheetList.add(CurrentQuestion(i, Common.ANSWER_TYPE.NO_ANSWER))
@@ -91,11 +85,10 @@ class QuestionActivity : AppCompatActivity() {
     private fun countTimer() {
         countDownTimer = object: CountDownTimer(Common.TOTAL_TIME.toLong(),1000) {
             override fun onTick(interval: Long) {
-                txt_timer.text = (java.lang.String.format("%02d:%02d", TimeUnit.MILLISECONDS.toMillis(interval),
+                tvTimer.text = (java.lang.String.format("%02d:%02d", TimeUnit.MILLISECONDS.toMillis(interval),
                 TimeUnit.MILLISECONDS.toSeconds(interval) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(interval))))
                 timeTest -= 1000
             }
-
             override fun onFinish() {
                 finishTest()
             }
@@ -113,10 +106,10 @@ class QuestionActivity : AppCompatActivity() {
                 if (snapshot.exists()) {
                     for (questionSnapshot in snapshot.children) {
                         val question = questionSnapshot.getValue(Question::class.java)
-                        questionList.add(question!!)
-                        Log.d("!!!", questionList.toString())
+                        viewModel.questionList.add(question!!)
+                        Log.d("!!!VM", viewModel.questionList.toString())
                     }
-                    questionRecyclerview.adapter = QuestionAdapter(questionList)
+                    questionRecyclerview.adapter = QuestionAdapter(viewModel.questionList as ArrayList<Question>)
                 }
             }
             override fun onCancelled(error: DatabaseError) { }

@@ -32,11 +32,11 @@
 
         <TextView
             android:id="@+id/textQuestion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="Question"
             android:textSize="20dp"
-            android:textStyle="bold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:textStyle="bold" />
 
         <RadioGroup
             android:layout_width="match_parent"

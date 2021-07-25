@@ -3,10 +3,20 @@ package by.vfdev.stesting.ViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import by.vfdev.stesting.Common.CurrentQuestion
 import by.vfdev.stesting.RemoteModel.Question
+import by.vfdev.stesting.UI.QuestionFragment
 
 class QuestionViewModel: ViewModel() {
     val questionList = mutableListOf<Question>()
+
+    companion object {
+        private var instance: QuestionViewModel? = null
+        fun getInstance() =
+            instance ?: synchronized(QuestionViewModel::class.java) {
+                instance ?: QuestionViewModel().also { instance = it }
+            }
+    }
 }
 
 class MyFactory: ViewModelProvider.NewInstanceFactory() {
