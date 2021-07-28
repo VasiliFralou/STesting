@@ -5,12 +5,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.core.view.isVisible
-import androidx.lifecycle.ViewModel
 import androidx.recyclerview.widget.RecyclerView
 import by.vfdev.stesting.R
 import by.vfdev.stesting.RemoteModel.Question
 
-class QuestionAdapter (private val questionList: ArrayList<Question>) : RecyclerView.Adapter<QuestionAdapter.MyViewHolder> () {
+
+class QuestionAdapter(private val questionList: ArrayList<Question>):
+    RecyclerView.Adapter<QuestionAdapter.MyViewHolder> () {
 
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
@@ -20,7 +21,6 @@ class QuestionAdapter (private val questionList: ArrayList<Question>) : Recycler
         val answerC = itemView.findViewById<TextView>(R.id.rbAnsC)
         val answerD = itemView.findViewById<TextView>(R.id.rbAnsD)
         val answerE = itemView.findViewById<TextView>(R.id.rbAnsE)
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
@@ -50,6 +50,6 @@ class QuestionAdapter (private val questionList: ArrayList<Question>) : Recycler
     }
 
     override fun getItemCount(): Int {
-        return 2
+        return 10
     }
 }
