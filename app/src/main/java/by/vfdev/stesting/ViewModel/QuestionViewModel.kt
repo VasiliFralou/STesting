@@ -1,13 +1,13 @@
 package by.vfdev.stesting.ViewModel
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import by.vfdev.stesting.Common.CurrentQuestion
 import by.vfdev.stesting.RemoteModel.Question
-import by.vfdev.stesting.UI.QuestionFragment
 
 class QuestionViewModel: ViewModel() {
+
+    var TOTAL_TIME = 10*60*1000
+
     val questionList = mutableListOf<Question>()
 
     companion object {
