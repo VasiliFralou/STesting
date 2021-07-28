@@ -9,25 +9,17 @@ import android.view.View
 import android.widget.TextView
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import by.vfdev.stesting.R
-import by.vfdev.stesting.RemoteModel.Question
 import by.vfdev.stesting.ViewModel.MyFactory
 import by.vfdev.stesting.ViewModel.QuestionViewModel
-import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_question.*
-import kotlinx.android.synthetic.main.question_item.*
-import java.util.*
-import java.util.concurrent.TimeUnit
-import kotlin.math.sign
 
 class QuestionActivity : AppCompatActivity() {
 
     lateinit var viewModel: QuestionViewModel
     private lateinit var tvTimer: TextView
 
-    var timeTest = 20*60*1000
+    var timeTest = viewModel.TOTAL_TIME
     private var mCurrentPosition: Int = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -90,8 +82,8 @@ class QuestionActivity : AppCompatActivity() {
         mCurrentPosition++
         rightAns.text = "$mCurrentPosition / 10"
 
-        val rnds = (0..9).random()
-        val question = viewModel.questionList.get((mCurrentPosition - 1) + rnds)
+        //val rnds = (0..9).random()
+        //val question = viewModel.questionList.get((mCurrentPosition - 1) + rnds)
 
     }
 }

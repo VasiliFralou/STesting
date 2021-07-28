@@ -3,15 +3,11 @@ package by.vfdev.stesting.UI
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.RecyclerView
 import by.vfdev.stesting.R
-import by.vfdev.stesting.RemoteModel.Question
 import by.vfdev.stesting.ViewModel.MyFactory
 import by.vfdev.stesting.ViewModel.QuestionViewModel
-import com.google.firebase.database.*
 
 class MainActivity : AppCompatActivity() {
 
