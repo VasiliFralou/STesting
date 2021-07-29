@@ -24,12 +24,14 @@ class SplashScreen : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash_screen)
 
-        viewModel = ViewModelProvider(this, MyFactory.getInstance()).get(QuestionViewModel::class.java)
+        viewModel = ViewModelProvider(this,
+            MyFactory.getInstance()).get(QuestionViewModel::class.java)
 
         getQuestionData()
 
         // This is used to hide the status bar and make the splash screen as a full screen activity.
-        window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
+        window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+            WindowManager.LayoutParams.FLAG_FULLSCREEN)
 
         // we used the postDelayed(Runnable, time) method to send a message with a delayed time.
         Handler().postDelayed({

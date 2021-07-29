@@ -18,8 +18,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        viewModel = ViewModelProvider(this, MyFactory.getInstance()).get(QuestionViewModel::class.java)
-        Log.d("!!!", viewModel.questionList.toString())
+        viewModel = ViewModelProvider(this,
+            MyFactory.getInstance()).get(QuestionViewModel::class.java)
     }
 
     fun startTest(view: View) {
