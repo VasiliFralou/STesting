@@ -3,6 +3,7 @@ package by.vfdev.stesting.UI
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import by.vfdev.stesting.R
@@ -18,6 +19,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         viewModel = ViewModelProvider(this, MyFactory.getInstance()).get(QuestionViewModel::class.java)
+        Log.d("!!!", viewModel.questionList.toString())
     }
 
     fun startTest(view: View) {

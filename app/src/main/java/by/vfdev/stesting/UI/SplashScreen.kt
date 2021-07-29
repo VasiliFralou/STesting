@@ -6,9 +6,8 @@ import android.os.Handler
 import android.util.Log
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat.startActivity
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import by.vfdev.stesting.R
 import by.vfdev.stesting.RemoteModel.Question
 import by.vfdev.stesting.ViewModel.MyFactory
@@ -34,7 +33,7 @@ class SplashScreen : AppCompatActivity() {
 
         // we used the postDelayed(Runnable, time) method to send a message with a delayed time.
         Handler().postDelayed({
-            val intent = Intent(this, MainActivity::class.java)
+            val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
             finish()
         }, 3000) // 3000 is the delayed time in milliseconds.
@@ -49,9 +48,13 @@ class SplashScreen : AppCompatActivity() {
                         val question = questionSnapshot.getValue(Question::class.java)
                         viewModel.questionList.add(question!!)
                     }
+                } else {
+                    Log.d("!!!: ", "Ошибка получения данных")
                 }
             }
-            override fun onCancelled(error: DatabaseError) { }
+            override fun onCancelled(error: DatabaseError) {
+                Log.d("!!!: ", "Ошибка получения данных")
+            }
         })
     }
 }
