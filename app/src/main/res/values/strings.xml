@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">STesting</string>
     <string name="formatted_time">%02d:%02d</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

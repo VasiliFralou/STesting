@@ -24,8 +24,7 @@ class SplashScreen : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash_screen)
 
-        viewModel = ViewModelProvider(this,
-            MyFactory.getInstance()).get(QuestionViewModel::class.java)
+        viewModel = ViewModelProvider(this, MyFactory.getInstance()).get(QuestionViewModel::class.java)
 
         getQuestionData()
 
@@ -35,7 +34,7 @@ class SplashScreen : AppCompatActivity() {
 
         // we used the postDelayed(Runnable, time) method to send a message with a delayed time.
         Handler().postDelayed({
-            val intent = Intent(this, LoginActivity::class.java)
+            val intent = Intent(this, StuffTestingActivity::class.java)
             startActivity(intent)
             finish()
         }, 3000) // 3000 is the delayed time in milliseconds.

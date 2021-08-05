@@ -16,9 +16,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".UI.QuestionActivity" />
-        <activity android:name=".UI.MainActivity" />
-        <activity android:name=".UI.LoginActivity" />
+        <activity android:name=".UI.StuffTestingActivity" android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity android:name=".UI.LoginActivity" android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
     </application>
 
 </manifest>

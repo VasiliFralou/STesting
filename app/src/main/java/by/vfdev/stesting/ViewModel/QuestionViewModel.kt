@@ -6,7 +6,8 @@ import by.vfdev.stesting.RemoteModel.Question
 
 class QuestionViewModel: ViewModel() {
 
-    var TOTAL_TIME = 10*60*1000
+    var TOTAL_TIME = 1*60*1000
+    var resultTest: Int = 0
 
     val questionList = mutableListOf<Question>()
 

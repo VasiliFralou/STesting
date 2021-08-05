@@ -14,7 +14,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     fun startMain(view: View) {
-        val intent = Intent(this, MainActivity::class.java)
+        val intent = Intent(this, StuffTestingActivity::class.java)
         startActivity(intent)
     }
 }
