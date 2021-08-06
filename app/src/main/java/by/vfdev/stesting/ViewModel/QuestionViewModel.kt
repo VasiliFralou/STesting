@@ -9,7 +9,7 @@ class QuestionViewModel: ViewModel() {
     var TOTAL_TIME = 1*60*1000
     var resultTest: Int = 0
 
-    val questionList = mutableListOf<Question>()
+    val questionList = mutableListOf<Question?>()
 
     companion object {
         private var instance: QuestionViewModel? = null

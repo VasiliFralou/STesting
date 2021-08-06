@@ -1,12 +1,13 @@
 package by.vfdev.stesting.UI
 
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat.startActivity
 import androidx.lifecycle.ViewModelProvider
 import by.vfdev.stesting.R
 import by.vfdev.stesting.RemoteModel.Question
@@ -19,6 +20,7 @@ class SplashScreen : AppCompatActivity() {
 
     lateinit var viewModel: QuestionViewModel
     private lateinit var dbref: DatabaseReference
+    private var data: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,9 +36,15 @@ class SplashScreen : AppCompatActivity() {
 
         // we used the postDelayed(Runnable, time) method to send a message with a delayed time.
         Handler().postDelayed({
-            val intent = Intent(this, StuffTestingActivity::class.java)
-            startActivity(intent)
-            finish()
+
+            if (viewModel.questionList == null) {
+                Log.d("!!!VM_NULL", viewModel.questionList.toString())
+            } else {
+                val intent = Intent(this, StuffTestingActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+
         }, 3000) // 3000 is the delayed time in milliseconds.
     }
 
@@ -44,18 +52,15 @@ class SplashScreen : AppCompatActivity() {
         dbref = FirebaseDatabase.getInstance().getReference("Questions")
         dbref.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
+                data = true
                 if (snapshot.exists()) {
                     for (questionSnapshot in snapshot.children) {
                         val question = questionSnapshot.getValue(Question::class.java)
                         viewModel.questionList.add(question!!)
                     }
-                } else {
-                    Log.d("!!!: ", "Ошибка получения данных")
                 }
             }
-            override fun onCancelled(error: DatabaseError) {
-                Log.d("!!!: ", "Ошибка получения данных")
-            }
+            override fun onCancelled(error: DatabaseError) {}
         })
     }
 }

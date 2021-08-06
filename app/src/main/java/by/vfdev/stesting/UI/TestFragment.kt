@@ -1,6 +1,8 @@
 package by.vfdev.stesting.UI
 
 import android.annotation.SuppressLint
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.util.Log
@@ -13,14 +15,10 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
 import by.vfdev.stesting.R
 import by.vfdev.stesting.RemoteModel.Question
 import by.vfdev.stesting.ViewModel.QuestionViewModel
-import kotlinx.android.synthetic.main.activity_question.*
-import kotlinx.android.synthetic.main.activity_question.view.*
 import kotlinx.android.synthetic.main.fragment_test.*
-import kotlinx.android.synthetic.main.fragment_test.view.*
 
 
 class TestFragment : Fragment(), RadioGroup.OnCheckedChangeListener {
@@ -34,9 +32,10 @@ class TestFragment : Fragment(), RadioGroup.OnCheckedChangeListener {
     lateinit var navController: NavController
 
     // Default and the first question position
-    private var currentPosition: Int = 1
+    private var currentPosition: Int = 0
     private var correctAnswers: Int = 0
     private var rnds: Int = 0
+    private var maxSize: Int = 0
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
@@ -50,6 +49,10 @@ class TestFragment : Fragment(), RadioGroup.OnCheckedChangeListener {
 
         navController = view.findNavController()
 
+        Log.d("!!!DB", viewModel.questionList.toString())
+
+        maxSize = viewModel.questionList.size - 1
+
         initViews(view)
         setQuestion()
         timerTest()
@@ -58,8 +61,8 @@ class TestFragment : Fragment(), RadioGroup.OnCheckedChangeListener {
             nextQuestion()
         }
         rbGroupQuestion.setOnCheckedChangeListener { radioGroup, id ->
-            var rb = view.findViewById<RadioButton>(id)
-            if (rb!=null)
+            val rb = view.findViewById<RadioButton>(id)
+            if (rb != null)
                 answerChecked = rb.text.toString()
         }
     }
@@ -71,14 +74,15 @@ class TestFragment : Fragment(), RadioGroup.OnCheckedChangeListener {
 
     @SuppressLint("SetTextI18n")
     private fun setQuestion() {
-
+        currentPosition++
         rbGroupQuestion.clearCheck()
 
-        rnds = (0..9).random()
+        rnds = (0..maxSize).random()
         progressBar.progress = currentPosition
         rightAns.text = "$currentPosition / 10"
 
-        question = viewModel.questionList[rnds]
+        question = viewModel.questionList[rnds]!!
+
         when {
             currentPosition == 10 -> {
                 btnNext.text = "FINISH"
@@ -130,25 +134,49 @@ class TestFragment : Fragment(), RadioGroup.OnCheckedChangeListener {
 
     private fun nextQuestion() {
         // fun
-        currentPosition++
+        when {
+            currentPosition == 10 -> {
+                alertEndTest(currentPosition)
+            }
+            currentPosition < 10 -> {
+                if (question.CorrectAnswer == answerChecked) {
+                    correctAnswers++
+                    Log.d("!!!", "+")
+                    viewModel.resultTest = correctAnswers
+                    setQuestion()
+                }
+            }
+        }
+    }
 
+    private fun finishTest() {
         if (question.CorrectAnswer == answerChecked) {
             correctAnswers++
-            Log.d("!!!", "Правильно!")
-        } else {
-            Log.d("!!!", "Неправильно!")
         }
-        when {
-            currentPosition < 10 -> {
-                setQuestion()
-            }
-            else -> {
-                viewModel.resultTest = correctAnswers
-                Log.d("!!!Result: ", correctAnswers.toString())
-                Log.d("!!!Result VM: ", viewModel.resultTest.toString())
-                navController.navigate(R.id.resultTestFragment)
-            }
-        }
+        navController.navigate(R.id.resultTestFragment)
+    }
+
+    private fun alertEndTest(currentPosition: Int) {
+        val dialogBuilder = AlertDialog.Builder(requireActivity())
+            // if the dialog is cancelable
+            .setCancelable(false)
+            // positive button text and action
+            .setPositiveButton("Да", DialogInterface.OnClickListener {
+                    dialog, id ->
+                if (currentPosition == 10)
+                    finishTest()
+            })
+            // negative button text and action
+            .setNegativeButton("Нет", DialogInterface.OnClickListener {
+                    dialog, id ->
+                dialog.cancel()
+            })
+        // create dialog box
+        val alert = dialogBuilder.create()
+        // set title for alert dialog box
+        alert.setTitle("Вы хотите завершить тест?")
+        // show alert dialog
+        alert.show()
     }
 
     private fun timerTest() {

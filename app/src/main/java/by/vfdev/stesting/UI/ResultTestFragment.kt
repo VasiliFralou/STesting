@@ -1,5 +1,6 @@
 package by.vfdev.stesting.UI
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -26,11 +27,13 @@ class ResultTestFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_result_test, container, false)
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         initViews(view)
 
-        tvResult.text = viewModel.resultTest.toString()
+        val result = viewModel.resultTest
+        tvResult.text = "$result / 10"
 
         super.onViewCreated(view, savedInstanceState)
     }

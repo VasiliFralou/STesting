@@ -1,16 +1,12 @@
 package by.vfdev.stesting.UI
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import android.widget.RadioButton
 import android.widget.RadioGroup
-import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.NavHostFragment
 import by.vfdev.stesting.R
 import by.vfdev.stesting.ViewModel.MyFactory
@@ -23,9 +19,8 @@ class StuffTestingActivity : AppCompatActivity(), RadioGroup.OnCheckedChangeList
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_stuff_testing)
             viewModel = ViewModelProvider(this, MyFactory.getInstance()).get(QuestionViewModel::class.java)
-        Log.d("!!!VM_LIST", viewModel.questionList.toString())
 
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.navHost) as NavHostFragment
