@@ -10,6 +10,7 @@ class QuestionViewModel: ViewModel() {
     var resultTest: Int = 0
 
     val questionList = mutableListOf<Question?>()
+    var currentUser: String = ""
 
     companion object {
         private var instance: QuestionViewModel? = null

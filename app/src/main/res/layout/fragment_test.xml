@@ -94,6 +94,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
+            android:layout_marginBottom="5dp"
             android:fontFamily="@font/reef"
             android:buttonTint="@color/white"
             android:tag="1"
@@ -107,6 +108,8 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
+            android:layout_marginBottom="5dp"
+
             android:fontFamily="@font/reef"
             android:buttonTint="@color/white"
             android:text="Answer B"
@@ -119,6 +122,8 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
+            android:layout_marginBottom="5dp"
+
             android:buttonTint="@color/white"
             android:fontFamily="@font/reef"
             android:text="Answer C"
@@ -131,6 +136,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
+            android:layout_marginBottom="5dp"
             android:fontFamily="@font/reef"
             android:buttonTint="@color/white"
             android:text="Answer D"
@@ -143,6 +149,8 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
+            android:layout_marginBottom="5dp"
+
             android:fontFamily="@font/reef"
             android:buttonTint="@color/white"
             android:text="Answer E"
@@ -164,10 +172,15 @@
             android:layout_marginLeft="25dp"
             android:layout_weight="1"
             android:background="@drawable/btn"
+            android:paddingLeft="5dp"
+            android:paddingRight="10dp"
             android:fontFamily="@font/reef"
+            android:textStyle="bold"
+            android:drawableLeft="@drawable/ic_back"
             android:text="back"
             android:textColor="@color/white"
             android:textSize="16sp" />
+/>
 
         <Button
             android:id="@+id/btnSkip"
@@ -176,9 +189,13 @@
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
             android:layout_weight="1"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:drawableRight="@drawable/ic_skip"
             android:background="@drawable/btn"
             android:fontFamily="@font/reef"
             android:text="skip"
+            android:textStyle="bold"
             android:textColor="@color/white"
             android:textSize="16sp" />
 
@@ -188,79 +205,15 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="25dp"
             android:layout_weight="1"
-            android:background="@drawable/btn"
-            android:fontFamily="@font/reef"
-            android:text="next"
-            android:textColor="@color/white"
-            android:textSize="16sp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:orientation="horizontal"
-        android:weightSum="3">
-
-        <Button
-            android:id="@+id/btnBack2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="25dp"
-            android:layout_weight="1"
-            android:background="@drawable/btn"
-            android:fontFamily="@font/reef"
-            android:paddingLeft="20dp"
-            android:paddingRight="25dp"
-            android:textStyle="bold"
-            android:drawableLeft="@drawable/ic_back"
-            android:text="back"
-            android:textColor="@color/white"
-            android:textSize="18sp" />
-
-        <Button
-            android:id="@+id/btnSkip2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:layout_weight="1"
-            android:paddingLeft="25dp"
-            android:paddingRight="25dp"
-            android:drawableRight="@drawable/ic_skip"
-            android:background="@drawable/btn"
-            android:fontFamily="@font/reef"
-            android:text="skip"
-            android:textStyle="bold"
-            android:textColor="@color/white"
-            android:textSize="18sp" />
-
-        <Button
-            android:id="@+id/btnNext2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="25dp"
-            android:layout_weight="1"
-            android:paddingLeft="25dp"
-            android:paddingRight="20dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="5dp"
             android:drawableRight="@drawable/ic_next"
             android:background="@drawable/btn"
             android:fontFamily="@font/reef"
             android:textStyle="bold"
             android:text="next"
             android:textColor="@color/white"
-            android:textSize="18sp" />
+            android:textSize="16sp" />
     </LinearLayout>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvQuestions"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginBottom="15dp"
-
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
-
-    </androidx.recyclerview.widget.RecyclerView>
 
 </LinearLayout>

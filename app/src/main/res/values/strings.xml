@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">STesting</string>
     <string name="formatted_time">%02d:%02d</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="login_prompt">Выполните вход</string>
+    <string name="welcome_message">Добро пожаловать, %1$s!</string>
+    <string name="login_unsuccessful_msg">Вход не выполнен</string>
+    <string name="login_successful_msg">Вход успешно выполнен</string>
 </resources>

@@ -3,6 +3,7 @@ package by.vfdev.stesting.UI
 import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.DialogInterface
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.util.Log
@@ -15,8 +16,11 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
+import androidx.room.Room
+import by.vfdev.stesting.LocalModel.QuestionImagesDatabase
 import by.vfdev.stesting.R
 import by.vfdev.stesting.RemoteModel.Question
+import by.vfdev.stesting.RemoteModel.QuestionImages
 import by.vfdev.stesting.ViewModel.QuestionViewModel
 import kotlinx.android.synthetic.main.fragment_test.*
 
@@ -30,12 +34,14 @@ class TestFragment : Fragment(), RadioGroup.OnCheckedChangeListener {
     private lateinit var answerChecked: String
 
     lateinit var navController: NavController
+    lateinit var questionImagesList: List<QuestionImages>
 
     // Default and the first question position
     private var currentPosition: Int = 0
     private var correctAnswers: Int = 0
     private var rnds: Int = 0
     private var maxSize: Int = 0
+    private var position = 0
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
@@ -48,14 +54,22 @@ class TestFragment : Fragment(), RadioGroup.OnCheckedChangeListener {
         super.onViewCreated(view, savedInstanceState)
 
         navController = view.findNavController()
-
-        Log.d("!!!DB", viewModel.questionList.toString())
-
         maxSize = viewModel.questionList.size - 1
 
         initViews(view)
         setQuestion()
         timerTest()
+
+        // ?????????????????????????????????????????
+//        val db = Room.databaseBuilder(requireActivity(),
+//            QuestionImagesDatabase::class.java, "STestingDB.db")
+//            .createFromAsset("STesting.db")
+//            .allowMainThreadQueries()
+//            .build()
+//
+//        questionImagesList = db.questionImagesDao().getAll()
+//
+//        showImage()
 
         btnNext.setOnClickListener {
             nextQuestion()
@@ -65,6 +79,12 @@ class TestFragment : Fragment(), RadioGroup.OnCheckedChangeListener {
             if (rb != null)
                 answerChecked = rb.text.toString()
         }
+    }
+
+    fun showImage() {
+        val imageArray = questionImagesList[position].image
+        val bmp = BitmapFactory.decodeByteArray(imageArray, 0, imageArray.size)
+        imgQuestion.setImageBitmap(bmp)
     }
 
     private fun initViews(view: View) {
@@ -94,12 +114,12 @@ class TestFragment : Fragment(), RadioGroup.OnCheckedChangeListener {
 
         tvQuestion.text = question.QuestionText
 
-        if (question.QuestionImage == null) {
-        } else {
+//        if (question.Id == questionImagesList.) {
+//        } else {
 //            val imgResId = question.QuestionImage
 //            var resId = imgResId!!.toInt()
 //            imgQuestion.setImageResource(resId)
-        }
+//        }
 
         if (question.AnswerA == null) rbAnsA.isVisible = false
         else {
