@@ -55,6 +55,7 @@ class SplashScreen : AppCompatActivity() {
                     for (questionSnapshot in snapshot.children) {
                         val question = questionSnapshot.getValue(Question::class.java)
                         viewModel.questionList.add(question!!)
+
                     }
                 }
             }

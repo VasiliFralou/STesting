@@ -48,6 +48,7 @@ class LoginFragment : Fragment() {
         val currentuser = auth.currentUser
         if(currentuser != null) {
             navController.navigate(R.id.mainFragment)
+            viewModel.currentUser = auth.currentUser?.email.toString()
         }
         btnLogin.setOnClickListener {
             login()

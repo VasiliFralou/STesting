@@ -31,6 +31,9 @@
         <action
             android:id="@+id/action_mainFragment_to_testFragment"
             app:destination="@id/testFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_resultsFragment"
+            app:destination="@id/resultsFragment" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
@@ -53,4 +56,31 @@
             android:id="@+id/action_registrationFragment_to_mainFragment"
             app:destination="@id/mainFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/resultsFragment"
+        android:name="by.vfdev.stesting.UI.ResultsFragment"
+        android:label="fragment_results"
+        tools:layout="@layout/fragment_results" >
+        <action
+            android:id="@+id/action_resultsFragment_to_myResultsFragment"
+            app:destination="@id/myResultsFragment" />
+        <action
+            android:id="@+id/action_resultsFragment_to_globalResultsFragment"
+            app:destination="@id/globalResultsFragment" />
+    </fragment>
+    <activity
+        android:id="@+id/splashScreen"
+        android:name="by.vfdev.stesting.UI.SplashScreen"
+        android:label="activity_splash_screen"
+        tools:layout="@layout/activity_splash_screen" />
+    <fragment
+        android:id="@+id/myResultsFragment"
+        android:name="by.vfdev.stesting.UI.MyResultsFragment"
+        android:label="fragment_my_results"
+        tools:layout="@layout/fragment_my_results" />
+    <fragment
+        android:id="@+id/globalResultsFragment"
+        android:name="by.vfdev.stesting.GlobalResultsFragment"
+        android:label="fragment_global_results"
+        tools:layout="@layout/fragment_global_results" />
 </navigation>

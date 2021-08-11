@@ -89,7 +89,7 @@ class TestFragment : Fragment(), RadioGroup.OnCheckedChangeListener {
         rbGroupQuestion.clearCheck()
         maxSize = viewModel.questionList.size - 1
         Log.d("!!!maxSize", maxSize.toString())
-        rnds = (0..maxSize).random()
+        rnds = (29..maxSize).random()
         question = viewModel.questionList[rnds]!!
         setQuestion(view)
     }

@@ -40,5 +40,8 @@ class MainFragment : Fragment() {
         btnStartTest.setOnClickListener {
             navController.navigate(R.id.testFragment)
         }
+        btnResult.setOnClickListener {
+            navController.navigate(R.id.resultsFragment)
+        }
     }
 }
