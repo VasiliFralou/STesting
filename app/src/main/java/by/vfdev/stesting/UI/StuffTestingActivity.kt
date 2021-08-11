@@ -28,17 +28,12 @@ class StuffTestingActivity : AppCompatActivity(), RadioGroup.OnCheckedChangeList
     }
 
     override fun onBackPressed() {
+        if (navController.currentDestination?.id == R.id.resultTestFragment) {
+            return
+        }
+        super.onBackPressed()
     }
 
     override fun onCheckedChanged(group: RadioGroup?, checkedId: Int) {
-        val checkedRadioButton = group?.findViewById(group.checkedRadioButtonId) as? RadioButton
-        checkedRadioButton?.let {
-            if (checkedRadioButton.isChecked) {
-
-                Log.d("!!!RB", "+- job")
-                //answerChecked = checkedRadioButton.text as String
-                // Toast.makeText(applicationContext, answerChecked, Toast.LENGTH_LONG).show()
-            }
-        }
     }
 }

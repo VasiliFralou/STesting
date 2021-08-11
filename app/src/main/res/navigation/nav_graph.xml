@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/testFragment"
-        android:name="by.vfdev.stesting.UI.TestFragment"
+        android:name="by.vfdev.stesting.UI.test.TestFragment"
         android:label="fragment_test"
         tools:layout="@layout/fragment_test" >
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/resultTestFragment"
-        android:name="by.vfdev.stesting.UI.ResultTestFragment"
+        android:name="by.vfdev.stesting.UI.test.ResultTestFragment"
         android:label="fragment_result_test"
         tools:layout="@layout/fragment_result_test" >
         <action
@@ -58,7 +58,7 @@
     </fragment>
     <fragment
         android:id="@+id/resultsFragment"
-        android:name="by.vfdev.stesting.UI.ResultsFragment"
+        android:name="by.vfdev.stesting.UI.results.ResultsFragment"
         android:label="fragment_results"
         tools:layout="@layout/fragment_results" >
         <action
@@ -75,12 +75,12 @@
         tools:layout="@layout/activity_splash_screen" />
     <fragment
         android:id="@+id/myResultsFragment"
-        android:name="by.vfdev.stesting.UI.MyResultsFragment"
+        android:name="by.vfdev.stesting.UI.results.MyResultsFragment"
         android:label="fragment_my_results"
         tools:layout="@layout/fragment_my_results" />
     <fragment
         android:id="@+id/globalResultsFragment"
-        android:name="by.vfdev.stesting.GlobalResultsFragment"
+        android:name="by.vfdev.stesting.UI.results.GlobalResultsFragment"
         android:label="fragment_global_results"
         tools:layout="@layout/fragment_global_results" />
 </navigation>

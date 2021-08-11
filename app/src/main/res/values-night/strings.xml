@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="startTime">00:00</string>
+    <string name="currentQuestion">0 / 10</string>
+    <string name="textBackBtn">back</string>
+    <string name="textSkipBtn">skip</string>
+    <string name="textNextBtn">next</string>
+    <string name="titleResultTest">Результат теста:</string>
+    <string name="scoreTest">0</string>
+    <string name="textRestartBtn">restart</string>
+    <string name="textGoToMenuBtn">В меню</string>
+</resources>

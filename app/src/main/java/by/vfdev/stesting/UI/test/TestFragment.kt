@@ -1,4 +1,4 @@
-package by.vfdev.stesting.UI
+package by.vfdev.stesting.UI.test
 
 import android.annotation.SuppressLint
 import android.app.AlertDialog
@@ -22,6 +22,7 @@ import by.vfdev.stesting.R
 import by.vfdev.stesting.RemoteModel.CurrentQuestion
 import by.vfdev.stesting.RemoteModel.Question
 import by.vfdev.stesting.RemoteModel.QuestionImages
+import by.vfdev.stesting.UI.StuffTestingActivity
 import by.vfdev.stesting.ViewModel.QuestionViewModel
 import kotlinx.android.synthetic.main.fragment_test.*
 
@@ -66,7 +67,7 @@ class TestFragment : Fragment(), RadioGroup.OnCheckedChangeListener {
         maxSize = viewModel.questionList.size - 1
 
         initViews(view)
-        getQuestion(view)
+        getQuestion()
         timerTest()
 
         btnNext.setOnClickListener {
@@ -85,16 +86,17 @@ class TestFragment : Fragment(), RadioGroup.OnCheckedChangeListener {
         }
     }
 
-    private fun getQuestion(view: View) {
+    private fun getQuestion() {
         rbGroupQuestion.clearCheck()
         maxSize = viewModel.questionList.size - 1
         Log.d("!!!maxSize", maxSize.toString())
-        rnds = (29..maxSize).random()
+        rnds = (0..maxSize).random()
         question = viewModel.questionList[rnds]!!
-        setQuestion(view)
+        setQuestion()
     }
 
-    private fun setQuestion(view: View) {
+    @SuppressLint("SetTextI18n")
+    private fun setQuestion() {
 
         progressBar.progress = currentQuestionPosition
         rightAns.text = "$currentQuestionPosition / 10"
@@ -135,7 +137,7 @@ class TestFragment : Fragment(), RadioGroup.OnCheckedChangeListener {
             currentQuestionPosition < 10 -> {
                 currentQuestionPosition++
                 checkAnswer()
-                getQuestion(view)
+                getQuestion()
             }
             currentQuestionPosition == 10 -> {
                 btnNext.text = "FINISH"
@@ -173,10 +175,8 @@ class TestFragment : Fragment(), RadioGroup.OnCheckedChangeListener {
     private fun alertEndTest() {
         val dialogBuilder = AlertDialog.Builder(requireActivity())
             .setCancelable(false)
-            .setPositiveButton("Да", DialogInterface.OnClickListener {
-                    dialog, id -> finishTest() })
-            .setNegativeButton("Нет", DialogInterface.OnClickListener {
-                    dialog, id -> dialog.cancel() })
+            .setPositiveButton("Да") { dialog, id -> finishTest() }
+            .setNegativeButton("Нет") { dialog, id -> dialog.cancel() }
         val alert = dialogBuilder.create()
         alert.setTitle("Вы хотите завершить тест?")
         alert.show()

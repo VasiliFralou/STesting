@@ -1,5 +1,5 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/linearLayout_main"
     android:layout_width="match_parent"
@@ -7,7 +7,7 @@
     android:background="@color/mainBackground"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".UI.TestFragment">
+    tools:context=".UI.test.TestFragment">
 
     <TextView
         android:id="@+id/tvTimer"
@@ -15,12 +15,11 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="25dp"
         android:layout_marginRight="25dp"
-
         android:fontFamily="@font/reef"
-        android:text="00:00"
+        android:text="@string/startTime"
         android:textAlignment="textEnd"
         android:textColor="@color/white"
-        android:textSize="26dp"
+        android:textSize="26sp"
         android:textStyle="bold" />
 
     <LinearLayout
@@ -60,7 +59,7 @@
             android:fontFamily="@font/reef"
             android:gravity="center"
             android:padding="15dp"
-            android:text="0/10"
+            android:text="@string/currentQuestion"
             android:textColor="@color/white"
             android:textSize="18sp" />
     </LinearLayout>
@@ -71,9 +70,8 @@
         android:layout_height="wrap_content"
         android:layout_margin="25dp"
         android:fontFamily="@font/reef"
-        android:text="Question"
         android:textColor="@color/white"
-        android:textSize="18dp" />
+        android:textSize="18sp" />
 
     <ImageView
         android:visibility="gone"
@@ -82,7 +80,8 @@
         android:layout_height="100dp"
         android:layout_marginLeft="25dp"
         android:layout_marginRight="25dp"
-        android:layout_marginBottom="25dp" />
+        android:layout_marginBottom="25dp"
+        android:contentDescription="@string/todo" />
 
     <RadioGroup
         android:id="@+id/rbGroupQuestion"
@@ -101,7 +100,6 @@
             android:buttonTint="@color/white"
             android:fontFamily="@font/reef"
             android:tag="1"
-            android:text="Answer A"
             android:textColor="@color/white"
             android:textSize="16sp" />
 
@@ -115,7 +113,6 @@
 
             android:buttonTint="@color/white"
             android:fontFamily="@font/reef"
-            android:text="Answer B"
             android:textColor="@color/white"
             android:textSize="16sp" />
 
@@ -129,7 +126,6 @@
 
             android:buttonTint="@color/white"
             android:fontFamily="@font/reef"
-            android:text="Answer C"
             android:textColor="@color/white"
             android:textSize="16sp" />
 
@@ -142,7 +138,6 @@
             android:layout_marginBottom="5dp"
             android:buttonTint="@color/white"
             android:fontFamily="@font/reef"
-            android:text="Answer D"
             android:textColor="@color/white"
             android:textSize="16sp" />
 
@@ -156,7 +151,6 @@
 
             android:buttonTint="@color/white"
             android:fontFamily="@font/reef"
-            android:text="Answer E"
             android:textColor="@color/white"
             android:textSize="16sp" />
     </RadioGroup>
@@ -172,19 +166,18 @@
             android:id="@+id/btnBack"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="25dp"
+            android:layout_marginStart="25dp"
             android:layout_weight="1"
             android:background="@drawable/btn"
-            android:drawableLeft="@drawable/ic_back"
+            android:drawableStart="@drawable/ic_back"
             android:fontFamily="@font/reef"
-            android:paddingLeft="5dp"
-            android:paddingRight="10dp"
-            android:text="back"
+            android:paddingStart="5dp"
+            android:paddingEnd="10dp"
+            android:text="@string/textBackBtn"
             android:textColor="@color/white"
             android:textSize="16sp"
-            android:textStyle="bold" />
-        />
-
+            android:textStyle="bold"
+            style="?android:attr/buttonBarButtonStyle" />
         <Button
             android:id="@+id/btnSkip"
             android:layout_width="wrap_content"
@@ -193,30 +186,32 @@
             android:layout_marginRight="15dp"
             android:layout_weight="1"
             android:background="@drawable/btn"
-            android:drawableRight="@drawable/ic_skip"
+            android:drawableEnd="@drawable/ic_skip"
             android:fontFamily="@font/reef"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
-            android:text="skip"
+            android:text="@string/textSkipBtn"
             android:textColor="@color/white"
             android:textSize="16sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            style="?android:attr/buttonBarButtonStyle" />
 
         <Button
             android:id="@+id/btnNext"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="25dp"
+            android:layout_marginEnd="25dp"
             android:layout_weight="1"
             android:background="@drawable/btn"
-            android:drawableRight="@drawable/ic_next"
+            android:drawableEnd="@drawable/ic_next"
             android:fontFamily="@font/reef"
-            android:paddingLeft="10dp"
-            android:paddingRight="5dp"
-            android:text="next"
+            android:paddingStart="10dp"
+            android:paddingEnd="5dp"
+            android:text="@string/textNextBtn"
             android:textColor="@color/white"
             android:textSize="16sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            style="?android:attr/buttonBarButtonStyle" />
     </LinearLayout>
 
 </LinearLayout>

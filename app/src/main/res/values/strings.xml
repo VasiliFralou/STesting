@@ -6,6 +6,15 @@
     <string name="welcome_message">Добро пожаловать, %1$s!</string>
     <string name="login_unsuccessful_msg">Вход не выполнен</string>
     <string name="login_successful_msg">Вход успешно выполнен</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="startTime">00:00</string>
+    <string name="currentQuestion">0 / 10</string>
+    <string name="textBackBtn">back</string>
+    <string name="textSkipBtn">skip</string>
+    <string name="textNextBtn">next</string>
+    <string name="titleResultTest">Результат теста:</string>
+    <string name="scoreTest">0</string>
+    <string name="textRestartBtn">restart</string>
+    <string name="textGoToMenuBtn">В меню</string>
+    <string name="todo">TODO</string>
 </resources>

@@ -33,7 +33,7 @@ class MainFragment : Fragment() {
 
         navController = view.findNavController()
 
-        tvWelcome.text = "Добро пожаловать, ${viewModel.currentUser}"
+        tvWelcome.text = viewModel.currentUser
 
         Log.d("!!!", viewModel.questionList.toString())
 

@@ -1,4 +1,4 @@
-package by.vfdev.stesting.UI
+package by.vfdev.stesting.UI.test
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import by.vfdev.stesting.R
+import by.vfdev.stesting.UI.StuffTestingActivity
 import by.vfdev.stesting.ViewModel.QuestionViewModel
 import kotlinx.android.synthetic.main.fragment_result_test.*
 

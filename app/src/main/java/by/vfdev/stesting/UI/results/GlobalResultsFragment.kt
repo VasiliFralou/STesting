@@ -1,4 +1,4 @@
-package by.vfdev.stesting.UI
+package by.vfdev.stesting.UI.results
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

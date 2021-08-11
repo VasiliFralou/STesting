@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UI.ResultTestFragment"
+    tools:context=".UI.test.ResultTestFragment"
     android:background="@color/mainBackground">
 
     <LinearLayout
@@ -23,11 +23,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/reef"
-            android:text="Результат теста:"
+            android:text="@string/titleResultTest"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:layout_marginBottom="10dp"
-            android:textSize="24dp" />
+            android:textSize="24sp" />
 
         <TextView
             android:id="@+id/tvResult"
@@ -35,7 +35,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/rbgroup"
             android:fontFamily="@font/reef"
-            android:text="0"
+            android:text="@string/scoreTest"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="48sp" />
@@ -52,32 +52,34 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:layout_marginRight="10dp"
+                android:layout_marginEnd="10dp"
                 android:background="@drawable/btn"
-                android:drawableLeft="@drawable/ic_restart"
+                android:drawableStart="@drawable/ic_restart"
                 android:fontFamily="@font/reef"
                 android:paddingLeft="15dp"
                 android:paddingRight="15dp"
-                android:text="restart"
+                android:text="@string/textRestartBtn"
                 android:textColor="@color/white"
                 android:textSize="16sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                style="?android:attr/buttonBarButtonStyle" />
 
             <Button
                 android:id="@+id/btnGoToMenu"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
                 android:background="@drawable/btn"
-                android:drawableLeft="@drawable/ic_menu"
+                android:drawableStart="@drawable/ic_menu"
                 android:fontFamily="@font/reef"
                 android:paddingLeft="15dp"
                 android:paddingRight="15dp"
-                android:text="В меню"
+                android:text="@string/textGoToMenuBtn"
                 android:textColor="@color/white"
                 android:textSize="16sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                style="?android:attr/buttonBarButtonStyle" />
         </LinearLayout>
 
     </LinearLayout>
