@@ -2,6 +2,7 @@ package by.vfdev.stesting.UI
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -33,6 +34,8 @@ class MainFragment : Fragment() {
         navController = view.findNavController()
 
         tvWelcome.text = "Добро пожаловать, ${viewModel.currentUser}"
+
+        Log.d("!!!", viewModel.questionList.toString())
 
         btnStartTest.setOnClickListener {
             navController.navigate(R.id.testFragment)

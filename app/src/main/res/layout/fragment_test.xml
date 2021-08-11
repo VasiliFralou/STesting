@@ -13,7 +13,9 @@
         android:id="@+id/tvTimer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="25dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+
         android:fontFamily="@font/reef"
         android:text="00:00"
         android:textAlignment="textEnd"
@@ -47,9 +49,9 @@
             android:layout_weight="1"
             android:indeterminate="false"
             android:max="10"
-            android:progressTint="@color/white"
             android:minHeight="50dp"
-            android:progress="0" />
+            android:progress="0"
+            android:progressTint="@color/white" />
 
         <TextView
             android:id="@+id/rightAns"
@@ -74,9 +76,10 @@
         android:textSize="18dp" />
 
     <ImageView
+        android:visibility="gone"
         android:id="@+id/imgQuestion"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="100dp"
         android:layout_marginLeft="25dp"
         android:layout_marginRight="25dp"
         android:layout_marginBottom="25dp" />
@@ -95,12 +98,12 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginBottom="5dp"
-            android:fontFamily="@font/reef"
             android:buttonTint="@color/white"
+            android:fontFamily="@font/reef"
             android:tag="1"
             android:text="Answer A"
-            android:textSize="16sp"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            android:textSize="16sp" />
 
         <RadioButton
             android:id="@+id/rbAnsB"
@@ -110,11 +113,11 @@
             android:layout_marginRight="20dp"
             android:layout_marginBottom="5dp"
 
-            android:fontFamily="@font/reef"
             android:buttonTint="@color/white"
+            android:fontFamily="@font/reef"
             android:text="Answer B"
-            android:textSize="16sp"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            android:textSize="16sp" />
 
         <RadioButton
             android:id="@+id/rbAnsC"
@@ -127,8 +130,8 @@
             android:buttonTint="@color/white"
             android:fontFamily="@font/reef"
             android:text="Answer C"
-            android:textSize="16sp"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            android:textSize="16sp" />
 
         <RadioButton
             android:id="@+id/rbAnsD"
@@ -137,11 +140,11 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginBottom="5dp"
-            android:fontFamily="@font/reef"
             android:buttonTint="@color/white"
+            android:fontFamily="@font/reef"
             android:text="Answer D"
-            android:textSize="16sp"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            android:textSize="16sp" />
 
         <RadioButton
             android:id="@+id/rbAnsE"
@@ -151,11 +154,11 @@
             android:layout_marginRight="20dp"
             android:layout_marginBottom="5dp"
 
-            android:fontFamily="@font/reef"
             android:buttonTint="@color/white"
+            android:fontFamily="@font/reef"
             android:text="Answer E"
-            android:textSize="16sp"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            android:textSize="16sp" />
     </RadioGroup>
 
     <LinearLayout
@@ -172,15 +175,15 @@
             android:layout_marginLeft="25dp"
             android:layout_weight="1"
             android:background="@drawable/btn"
+            android:drawableLeft="@drawable/ic_back"
+            android:fontFamily="@font/reef"
             android:paddingLeft="5dp"
             android:paddingRight="10dp"
-            android:fontFamily="@font/reef"
-            android:textStyle="bold"
-            android:drawableLeft="@drawable/ic_back"
             android:text="back"
             android:textColor="@color/white"
-            android:textSize="16sp" />
-/>
+            android:textSize="16sp"
+            android:textStyle="bold" />
+        />
 
         <Button
             android:id="@+id/btnSkip"
@@ -189,15 +192,15 @@
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
             android:layout_weight="1"
+            android:background="@drawable/btn"
+            android:drawableRight="@drawable/ic_skip"
+            android:fontFamily="@font/reef"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
-            android:drawableRight="@drawable/ic_skip"
-            android:background="@drawable/btn"
-            android:fontFamily="@font/reef"
             android:text="skip"
-            android:textStyle="bold"
             android:textColor="@color/white"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/btnNext"
@@ -205,15 +208,15 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="25dp"
             android:layout_weight="1"
+            android:background="@drawable/btn"
+            android:drawableRight="@drawable/ic_next"
+            android:fontFamily="@font/reef"
             android:paddingLeft="10dp"
             android:paddingRight="5dp"
-            android:drawableRight="@drawable/ic_next"
-            android:background="@drawable/btn"
-            android:fontFamily="@font/reef"
-            android:textStyle="bold"
             android:text="next"
             android:textColor="@color/white"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:textStyle="bold" />
     </LinearLayout>
 
 </LinearLayout>

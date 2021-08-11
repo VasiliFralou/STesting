@@ -27,6 +27,9 @@ class StuffTestingActivity : AppCompatActivity(), RadioGroup.OnCheckedChangeList
         navController = navHostFragment.navController
     }
 
+    override fun onBackPressed() {
+    }
+
     override fun onCheckedChanged(group: RadioGroup?, checkedId: Int) {
         val checkedRadioButton = group?.findViewById(group.checkedRadioButtonId) as? RadioButton
         checkedRadioButton?.let {
