@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/blank"
+        android:title=""
+        android:icon="@drawable/ic_more"
+        app:showAsAction="always"
+        >
+        <menu>
+
+            <item
+                android:id="@+id/menu_StartTestFragment"
+                android:title="Пройти тест"
+                android:icon="@drawable/ic_start_test"
+                android:iconTint="@color/black"
+                app:showAsAction="never"
+                />
+            <item
+                android:id="@+id/menuResultFragment"
+                android:title="Результаты"
+                android:icon="@drawable/ic_result"
+                app:showAsAction="never"
+                android:iconTint="@color/black"
+                />
+            <item
+                android:id="@+id/menu_SettingFragment"
+                android:title="Настройки"
+                android:icon="@drawable/ic_settings"
+                app:showAsAction="never"
+                android:iconTint="@color/black"
+                />
+        </menu>
+    </item>
+
+</menu>

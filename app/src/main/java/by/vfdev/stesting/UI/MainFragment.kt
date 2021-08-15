@@ -43,5 +43,8 @@ class MainFragment : Fragment() {
         btnResult.setOnClickListener {
             navController.navigate(R.id.resultsFragment)
         }
+        btnSetting.setOnClickListener{ v ->
+            (activity as StuffTestingActivity).openCloseNavigationDrawer(v)
+        }
     }
 }

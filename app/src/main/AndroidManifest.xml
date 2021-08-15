@@ -20,7 +20,7 @@
         </activity>
         <activity
             android:name=".UI.StuffTestingActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
     </application>
 
 </manifest>
