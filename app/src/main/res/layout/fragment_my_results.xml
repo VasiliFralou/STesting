@@ -8,13 +8,27 @@
     android:background="@color/mainBackground"
     tools:context=".UI.results.MyResultsFragment">
 
+
     <TextView
         android:id="@+id/tvMyResult"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="My results"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_height="0dp"
+        android:text="Мои результаты"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/reef"
+        android:gravity="center"
+        android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvMyResult" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,217 +1,171 @@
-<LinearLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/linearLayout_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/mainBackground"
-    android:gravity="center"
-    android:orientation="vertical"
     tools:context=".UI.test.TestFragment">
 
-    <TextView
-        android:id="@+id/tvTimer"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="25dp"
-        android:layout_marginRight="25dp"
-        android:fontFamily="@font/reef"
-        android:text="@string/startTime"
-        android:textAlignment="textEnd"
-        android:textColor="@color/white"
-        android:textSize="26sp"
-        android:textStyle="bold" />
+    <Button
+        android:id="@+id/btnNavMenu"
+        android:layout_width="25dp"
+        android:layout_height="15dp"
+        android:layout_gravity="start"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/ic_btn_menu"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="2">
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/progressDetails"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="25dp"
-        android:layout_marginRight="25dp"
-        android:gravity="center_horizontal"
-        android:orientation="horizontal">
-
-        <ProgressBar
-            android:id="@+id/progressBar"
-            style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:indeterminate="false"
-            android:max="10"
-            android:minHeight="50dp"
-            android:progress="0"
-            android:progressTint="@color/white" />
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnNavMenu">
 
         <TextView
-            android:id="@+id/rightAns"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/reef"
-            android:gravity="center"
-            android:padding="15dp"
-            android:text="@string/currentQuestion"
-            android:textColor="@color/white"
-            android:textSize="18sp" />
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/tvQuestion"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="25dp"
-        android:fontFamily="@font/reef"
-        android:textColor="@color/white"
-        android:textSize="18sp" />
-
-    <ImageView
-        android:visibility="gone"
-        android:id="@+id/imgQuestion"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_marginLeft="25dp"
-        android:layout_marginRight="25dp"
-        android:layout_marginBottom="25dp"
-        android:contentDescription="@string/todo" />
-
-    <RadioGroup
-        android:id="@+id/rbGroupQuestion"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp">
-
-        <RadioButton
-            android:id="@+id/rbAnsA"
+            android:id="@+id/tvTimer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginBottom="5dp"
-            android:buttonTint="@color/white"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
             android:fontFamily="@font/reef"
-            android:tag="1"
+            android:text="@string/startTime"
+            android:textAlignment="textEnd"
             android:textColor="@color/white"
-            android:textSize="16sp" />
+            android:textSize="26sp"
+            android:textStyle="bold" />
 
-        <RadioButton
-            android:id="@+id/rbAnsB"
+        <LinearLayout
+            android:id="@+id/progressDetails"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
 
-            android:buttonTint="@color/white"
-            android:fontFamily="@font/reef"
-            android:textColor="@color/white"
-            android:textSize="16sp" />
+            <ProgressBar
+                android:id="@+id/progressBar"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:indeterminate="false"
+                android:max="10"
+                android:minHeight="50dp"
+                android:progress="0"
+                android:progressTint="@color/white" />
 
-        <RadioButton
-            android:id="@+id/rbAnsC"
+            <TextView
+                android:id="@+id/rightAns"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/reef"
+                android:gravity="center"
+                android:padding="15dp"
+                android:text="@string/currentQuestion"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvQuestion"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginBottom="5dp"
-
-            android:buttonTint="@color/white"
-            android:fontFamily="@font/reef"
-            android:textColor="@color/white"
-            android:textSize="16sp" />
-
-        <RadioButton
-            android:id="@+id/rbAnsD"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginBottom="5dp"
-            android:buttonTint="@color/white"
-            android:fontFamily="@font/reef"
-            android:textColor="@color/white"
-            android:textSize="16sp" />
-
-        <RadioButton
-            android:id="@+id/rbAnsE"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginBottom="5dp"
-
-            android:buttonTint="@color/white"
-            android:fontFamily="@font/reef"
-            android:textColor="@color/white"
-            android:textSize="16sp" />
-    </RadioGroup>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:orientation="horizontal"
-        android:weightSum="3">
-
-        <Button
-            android:id="@+id/btnBack"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="5dp"
             android:layout_marginStart="25dp"
-            android:layout_weight="1"
-            android:background="@drawable/btn"
-            android:drawableStart="@drawable/ic_back"
+            android:layout_marginEnd="25dp"
             android:fontFamily="@font/reef"
-            android:paddingStart="5dp"
-            android:paddingEnd="10dp"
-            android:text="@string/textBackBtn"
             android:textColor="@color/white"
-            android:textSize="16sp"
             android:textStyle="bold"
-            style="?android:attr/buttonBarButtonStyle" />
-        <Button
-            android:id="@+id/btnSkip"
-            android:layout_width="wrap_content"
+            android:textSize="20sp" />
+
+        <ImageView
+            android:id="@+id/imgQuestion"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:layout_marginBottom="25dp"
+            android:contentDescription="@string/todo"
+            android:visibility="gone" />
+
+        <RadioGroup
+            android:id="@+id/rbGroupQuestion"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:layout_weight="1"
-            android:background="@drawable/btn"
-            android:drawableEnd="@drawable/ic_skip"
-            android:fontFamily="@font/reef"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:text="@string/textSkipBtn"
-            android:textColor="@color/white"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            style="?android:attr/buttonBarButtonStyle" />
+            android:layout_marginRight="15dp">
+        </RadioGroup>
 
-        <Button
-            android:id="@+id/btnNext"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="25dp"
-            android:layout_weight="1"
-            android:background="@drawable/btn"
-            android:drawableEnd="@drawable/ic_next"
-            android:fontFamily="@font/reef"
-            android:paddingStart="10dp"
-            android:paddingEnd="5dp"
-            android:text="@string/textNextBtn"
-            android:textColor="@color/white"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            style="?android:attr/buttonBarButtonStyle" />
-    </LinearLayout>
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal"
+            android:weightSum="3">
 
-</LinearLayout>
+            <Button
+                android:id="@+id/btnBack"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_weight="1"
+                android:background="@drawable/btn"
+                android:drawableStart="@drawable/ic_back"
+                android:fontFamily="@font/reef"
+                android:paddingStart="5dp"
+                android:paddingEnd="10dp"
+                android:text="@string/textBackBtn"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/btnSkip"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_weight="1"
+                android:background="@drawable/btn"
+                android:drawableEnd="@drawable/ic_skip"
+                android:fontFamily="@font/reef"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="@string/textSkipBtn"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/btnNext"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="25dp"
+                android:layout_weight="1"
+                android:background="@drawable/btn"
+                android:drawableEnd="@drawable/ic_next"
+                android:fontFamily="@font/reef"
+                android:paddingStart="10dp"
+                android:paddingEnd="5dp"
+                android:text="@string/textNextBtn"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>

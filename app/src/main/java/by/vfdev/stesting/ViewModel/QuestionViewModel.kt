@@ -3,6 +3,7 @@ package by.vfdev.stesting.ViewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import by.vfdev.stesting.RemoteModel.Question
+import by.vfdev.stesting.RemoteModel.UsersResult
 
 class QuestionViewModel: ViewModel() {
 
@@ -10,6 +11,7 @@ class QuestionViewModel: ViewModel() {
     var resultTest: Int = 0
 
     val questionList = mutableListOf<Question?>()
+    val userScoresList = mutableListOf<UsersResult?>()
     var currentUser: String = ""
 
     companion object {

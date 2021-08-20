@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import by.vfdev.stesting.R
+import by.vfdev.stesting.UI.StuffTestingActivity
+import kotlinx.android.synthetic.main.fragment_test.*
 
 class GlobalResultsFragment : Fragment() {
 
@@ -14,5 +16,9 @@ class GlobalResultsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_global_results, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
     }
 }

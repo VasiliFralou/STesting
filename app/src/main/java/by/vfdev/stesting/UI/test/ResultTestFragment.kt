@@ -2,6 +2,7 @@ package by.vfdev.stesting.UI.test
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,14 +12,21 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import by.vfdev.stesting.R
+import by.vfdev.stesting.RemoteModel.UsersResult
 import by.vfdev.stesting.UI.StuffTestingActivity
 import by.vfdev.stesting.ViewModel.QuestionViewModel
+import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.fragment_result_test.*
+import java.text.SimpleDateFormat
+import java.util.*
 
 class ResultTestFragment : Fragment() {
 
     private lateinit var tvResult: TextView
     private lateinit var viewModel: QuestionViewModel
+
+    private lateinit var database: FirebaseDatabase
+    private lateinit var reference: DatabaseReference
 
     lateinit var navController: NavController
 
@@ -29,10 +37,13 @@ class ResultTestFragment : Fragment() {
 
         viewModel = ViewModelProvider(activity as StuffTestingActivity).get(QuestionViewModel::class.java)
 
+        database = FirebaseDatabase.getInstance()
+        reference = database.getReference("Results")
+
         return inflater.inflate(R.layout.fragment_result_test, container, false)
     }
 
-    @SuppressLint("SetTextI18n")
+    @SuppressLint("SetTextI18n", "SimpleDateFormat")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -40,8 +51,16 @@ class ResultTestFragment : Fragment() {
 
         initViews(view)
 
-        val result = viewModel.resultTest
-        tvResult.text = "$result / 10"
+        val user = viewModel.currentUser
+        val scores = viewModel.resultTest
+        tvResult.text = "$scores / 10"
+        val sdf = SimpleDateFormat("dd/M/yyyy hh:mm:ss")
+        val date = sdf.format(Date())
+
+        var model = UsersResult(user, scores, date)
+        var id = reference.push().key
+
+        reference.child(id!!).setValue(model)
 
         btnRestart.setOnClickListener { navController.navigate(R.id.testFragment) }
         btnGoToMenu.setOnClickListener { navController.navigate(R.id.mainFragment) }

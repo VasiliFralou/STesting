@@ -2,15 +2,19 @@ package by.vfdev.stesting.UI.test
 
 import android.annotation.SuppressLint
 import android.app.AlertDialog
-import android.content.DialogInterface
+import android.content.res.ColorStateList
 import android.graphics.BitmapFactory
+import android.graphics.Color
+import android.graphics.Typeface
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
+import android.widget.RadioButton
+import android.widget.RadioGroup
+import android.widget.TextView
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -22,9 +26,11 @@ import by.vfdev.stesting.R
 import by.vfdev.stesting.RemoteModel.CurrentQuestion
 import by.vfdev.stesting.RemoteModel.Question
 import by.vfdev.stesting.RemoteModel.QuestionImages
+import by.vfdev.stesting.RemoteModel.UsersResult
 import by.vfdev.stesting.UI.StuffTestingActivity
 import by.vfdev.stesting.ViewModel.QuestionViewModel
 import kotlinx.android.synthetic.main.fragment_test.*
+
 
 class TestFragment : Fragment(), RadioGroup.OnCheckedChangeListener {
 
@@ -43,6 +49,12 @@ class TestFragment : Fragment(), RadioGroup.OnCheckedChangeListener {
     private var correctAnswers: Int = 0
     private var rnds: Int = 0
     private var maxSize: Int = 0
+
+    private val colorStateList = ColorStateList(arrayOf(
+        intArrayOf(-android.R.attr.state_enabled),
+        intArrayOf(android.R.attr.state_enabled)),
+        intArrayOf(Color.WHITE , Color.WHITE)
+    )
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
@@ -79,6 +91,9 @@ class TestFragment : Fragment(), RadioGroup.OnCheckedChangeListener {
         btnSkip.setOnClickListener {
             // skipQuestion(view)
         }
+        btnNavMenu.setOnClickListener{ v ->
+            (activity as StuffTestingActivity).openCloseNavigationDrawer(v)
+        }
         rbGroupQuestion.setOnCheckedChangeListener { radioGroup, id ->
             val rb = view.findViewById<RadioButton>(id)
             if (rb != null)
@@ -95,8 +110,12 @@ class TestFragment : Fragment(), RadioGroup.OnCheckedChangeListener {
         setQuestion()
     }
 
-    @SuppressLint("SetTextI18n")
+    @SuppressLint("SetTextI18n", "ResourceAsColor")
     private fun setQuestion() {
+
+        val info = arrayListOf(question.AnswerA,
+            question.AnswerB, question.AnswerC,
+            question.AnswerD, question.AnswerE)
 
         progressBar.progress = currentQuestionPosition
         rightAns.text = "$currentQuestionPosition / 10"
@@ -104,30 +123,20 @@ class TestFragment : Fragment(), RadioGroup.OnCheckedChangeListener {
 
         checkImage()
 
-        if (question.AnswerA == null) rbAnsA.isVisible = false
-        else {
-            rbAnsA.text = question.AnswerA
-            rbAnsA.isVisible = true
-        }
-        if (question.AnswerB == null) rbAnsB.isVisible = false
-        else {
-            rbAnsB.text = question.AnswerB
-            rbAnsB.isVisible = true
-        }
-        if (question.AnswerC == null) rbAnsC.isVisible = false
-        else {
-            rbAnsC.text = question.AnswerC
-            rbAnsC.isVisible = true
-        }
-        if (question.AnswerD == null) rbAnsD.isVisible = false
-        else {
-            rbAnsD.text = question.AnswerD
-            rbAnsD.isVisible = true
-        }
-        if (question.AnswerE == null) rbAnsE.isVisible = false
-        else {
-            rbAnsE.text = question.AnswerE
-            rbAnsE.isVisible = true
+        val random = info.shuffled()
+        rbGroupQuestion.removeAllViews()
+        for (i in random.indices) {
+            val newButton = RadioButton(requireActivity())
+            if (random[i] == null) {
+                newButton.isVisible = false
+            }
+            newButton.text = random[i]
+            newButton.tag = i.toString()
+            newButton.buttonTintList = colorStateList
+            newButton.textSize = 16f
+            newButton.typeface = Typeface.createFromAsset(requireActivity().assets, "fonts/reef.otf")
+
+            rbGroupQuestion.addView(newButton)
         }
     }
 

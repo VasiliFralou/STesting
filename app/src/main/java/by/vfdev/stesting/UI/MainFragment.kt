@@ -13,11 +13,12 @@ import androidx.navigation.findNavController
 import by.vfdev.stesting.R
 import by.vfdev.stesting.ViewModel.QuestionViewModel
 import kotlinx.android.synthetic.main.fragment_main.*
+import kotlinx.android.synthetic.main.fragment_test.*
+import kotlinx.android.synthetic.main.header.*
 
 class MainFragment : Fragment() {
 
     private lateinit var viewModel: QuestionViewModel
-
     lateinit var navController: NavController
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -35,16 +36,11 @@ class MainFragment : Fragment() {
 
         tvWelcome.text = viewModel.currentUser
 
-        Log.d("!!!", viewModel.questionList.toString())
-
         btnStartTest.setOnClickListener {
             navController.navigate(R.id.testFragment)
         }
         btnResult.setOnClickListener {
             navController.navigate(R.id.resultsFragment)
-        }
-        btnSetting.setOnClickListener{ v ->
-            (activity as StuffTestingActivity).openCloseNavigationDrawer(v)
         }
     }
 }
