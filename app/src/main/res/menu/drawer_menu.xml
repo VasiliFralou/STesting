@@ -6,25 +6,30 @@
 
     <group android:checkableBehavior="single">
         <item
+            android:id="@+id/menuMain"
+            android:title="@string/title_menuMain"
+            android:icon="@drawable/ic_menu"
+            />
+        <item
             android:id="@+id/menuStartTest"
-            android:title="Пройти тест"
+            android:title="@string/title_menuStartTest"
             android:icon="@drawable/ic_start_test"/>
         <item
             android:id="@+id/menuResult"
-            android:title="Результаты"
+            android:title="@string/title_menuResult"
             android:icon="@drawable/ic_result"/>
         <item
             android:id="@+id/menuSetting"
-            android:title="Настройки"
+            android:title="@string/title_menuSetting"
             android:icon="@drawable/ic_settings"/>
     </group>
 
     <item
-        android:title="Контакты">
+        android:title="@string/title_HeadNavMenu">
         <menu>
             <item
                 android:id="@+id/supportDeveloper"
-                android:title="Поддержка"
+                android:title="@string/title_support"
                 android:icon="@drawable/ic_support"/>
         </menu>
     </item>

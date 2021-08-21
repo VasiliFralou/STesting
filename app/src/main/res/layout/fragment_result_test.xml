@@ -49,37 +49,39 @@
 
             <Button
                 android:id="@+id/btnRestart"
+                style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:layout_marginEnd="10dp"
+                android:layout_weight="1"
                 android:background="@drawable/btn"
                 android:drawableStart="@drawable/ic_restart"
                 android:fontFamily="@font/reef"
                 android:paddingLeft="15dp"
                 android:paddingRight="15dp"
                 android:text="@string/textRestartBtn"
+                android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textSize="16sp"
-                android:textStyle="bold"
-                style="?android:attr/buttonBarButtonStyle" />
+                android:textStyle="bold" />
 
             <Button
                 android:id="@+id/btnGoToMenu"
+                style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:layout_marginStart="10dp"
+                android:layout_weight="1"
                 android:background="@drawable/btn"
                 android:drawableStart="@drawable/ic_menu"
                 android:fontFamily="@font/reef"
                 android:paddingLeft="15dp"
                 android:paddingRight="15dp"
                 android:text="@string/textGoToMenuBtn"
+                android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textSize="16sp"
-                android:textStyle="bold"
-                style="?android:attr/buttonBarButtonStyle" />
+                android:textStyle="bold" />
         </LinearLayout>
 
     </LinearLayout>

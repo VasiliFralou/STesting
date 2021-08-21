@@ -34,7 +34,7 @@
             android:gravity="center"
             android:fontFamily="@font/reef"
             android:text="Добро пожаловать"
-            android:textSize="24dp"/>
+            android:textSize="18sp"/>
 
         <TextView
             android:id="@+id/tvWelcome"
@@ -43,7 +43,7 @@
             android:paddingBottom="50dp"
             android:gravity="center"
             android:fontFamily="@font/reef"
-            android:textSize="24dp" />
+            android:textSize="18sp" />
 
         <Button
             android:id="@+id/btnStartTest"
@@ -52,14 +52,16 @@
             android:layout_gravity="center"
             android:layout_marginBottom="20dp"
             android:background="@drawable/btn"
-            android:gravity="left|center_vertical"
             android:drawableLeft="@drawable/ic_start_test"
             android:fontFamily="@font/reef"
+            android:gravity="left|center_vertical"
             android:paddingStart="20dp"
             android:paddingEnd="20dp"
             android:text="Пройти тест"
+            android:textAllCaps="false"
             android:textColor="@color/white"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            tools:ignore="RtlHardcoded" />
 
         <Button
             android:id="@+id/btnResult"
@@ -68,14 +70,16 @@
             android:layout_gravity="center"
             android:layout_marginBottom="20dp"
             android:background="@drawable/btn"
-            android:gravity="left|center_vertical"
             android:drawableLeft="@drawable/ic_result"
             android:fontFamily="@font/reef"
+            android:gravity="left|center_vertical"
             android:paddingStart="27dp"
             android:paddingEnd="20dp"
             android:text="   Результаты"
+            android:textAllCaps="false"
             android:textColor="@color/white"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            tools:ignore="RtlHardcoded" />
 
         <Button
             android:id="@+id/btnSetting"
@@ -84,13 +88,15 @@
             android:layout_gravity="center"
             android:layout_marginBottom="20dp"
             android:background="@drawable/btn"
-            android:gravity="left|center_vertical"
-            android:drawableLeft="@drawable/ic_settings"
+            android:drawableStart="@drawable/ic_settings"
             android:fontFamily="@font/reef"
+            android:gravity="left|center_vertical"
             android:paddingStart="27dp"
             android:paddingEnd="20dp"
             android:text="   Настройки"
+            android:textAllCaps="false"
             android:textColor="@color/white"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            tools:ignore="RtlHardcoded" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

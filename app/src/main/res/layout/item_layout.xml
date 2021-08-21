@@ -24,22 +24,21 @@
             android:layout_marginBottom="10dp"
             android:layout_toStartOf="@+id/tvData"
             android:fontFamily="@font/reef"
-            android:text="Дата:"
-            android:textSize="16sp" />
+            android:text="@string/textdata"
+            android:textSize="12sp" />
 
         <TextView
             android:id="@+id/tvData"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
             android:layout_marginStart="2dp"
             android:layout_marginTop="15dp"
             android:layout_marginEnd="15dp"
             android:layout_marginBottom="10dp"
             android:fontFamily="@font/reef"
-            android:text="08.02.19"
-            android:textSize="16sp" />
+            android:textSize="12sp" />
 
         <TextView
             android:id="@+id/scores"
@@ -49,21 +48,20 @@
             android:layout_centerVertical="true"
             android:layout_marginStart="20dp"
             android:fontFamily="@font/reef"
-            android:text="Баллы:"
-            android:textSize="26sp" />
+            android:text="@string/textScores"
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/tvMyResultScore"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginTop="15dp"
             android:layout_marginStart="5dp"
+            android:layout_marginTop="15dp"
             android:layout_marginEnd="15dp"
             android:layout_marginBottom="15dp"
             android:layout_toEndOf="@+id/scores"
             android:fontFamily="@font/reef"
-            android:text="0 / 10"
-            android:textSize="26sp" />
+            android:textSize="20sp" />
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

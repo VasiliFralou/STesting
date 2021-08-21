@@ -2,12 +2,7 @@ package by.vfdev.stesting.UI
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.view.Menu
 import android.view.MenuItem
-import android.view.View
-import android.widget.RadioGroup
-import android.widget.Toast
 import androidx.core.view.GravityCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
@@ -38,6 +33,11 @@ class StuffTestingActivity : AppCompatActivity(), NavigationView.OnNavigationIte
 
         navView.setNavigationItemSelectedListener {
             when (it.itemId) {
+                R.id.menuMain -> {
+                    navController.navigate(R.id.mainFragment)
+                    drawerLayout.closeDrawer(GravityCompat.START)
+                    true
+                }
                 R.id.menuStartTest -> {
                     navController.navigate(R.id.testFragment)
                     drawerLayout.closeDrawer(GravityCompat.START)
@@ -50,7 +50,6 @@ class StuffTestingActivity : AppCompatActivity(), NavigationView.OnNavigationIte
                 }
                 R.id.menuSetting -> {
                     drawerLayout.closeDrawer(GravityCompat.START)
-                    //
                     true
                 }
                 else -> false
@@ -62,7 +61,7 @@ class StuffTestingActivity : AppCompatActivity(), NavigationView.OnNavigationIte
         return navController.navigateUp() || super.onSupportNavigateUp()
     }
 
-    fun openCloseNavigationDrawer(view: View) {
+    fun openCloseNavigationDrawer() {
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START)
         } else {
@@ -82,18 +81,6 @@ class StuffTestingActivity : AppCompatActivity(), NavigationView.OnNavigationIte
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.menuStartTest -> {
-                Toast.makeText(this, "Start test", Toast.LENGTH_SHORT).show()
-            }
-            R.id.menuResult -> {
-                Toast.makeText(this, "UsersResult", Toast.LENGTH_SHORT).show()
-            }
-            R.id.menuSetting -> {
-                Toast.makeText(this, "Setting", Toast.LENGTH_SHORT).show()
-            }
-        }
-        drawerLayout.closeDrawer(GravityCompat.START)
         return true
     }
 }

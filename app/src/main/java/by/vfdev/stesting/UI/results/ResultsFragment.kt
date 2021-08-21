@@ -9,7 +9,6 @@ import by.vfdev.stesting.R
 import by.vfdev.stesting.UI.StuffTestingActivity
 import by.vfdev.stesting.UI.ViewPagerAdapter
 import kotlinx.android.synthetic.main.fragment_results.*
-import kotlinx.android.synthetic.main.fragment_test.*
 
 class ResultsFragment : Fragment() {
 
@@ -27,7 +26,7 @@ class ResultsFragment : Fragment() {
             GlobalResultsFragment()
         )
         btnFrNavMenu.setOnClickListener{ v ->
-            (activity as StuffTestingActivity).openCloseNavigationDrawer(v)
+            (activity as StuffTestingActivity).openCloseNavigationDrawer()
         }
         pager2_container.adapter = ViewPagerAdapter(requireActivity(), fragmentList)
     }

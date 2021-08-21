@@ -17,7 +17,8 @@
         android:layout_marginTop="25dp"
         android:background="@drawable/ic_btn_menu"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -112,39 +113,24 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:orientation="horizontal"
-            android:weightSum="3">
+            android:layout_gravity="center"
+            android:weightSum="2">
 
             <Button
                 android:id="@+id/btnBack"
                 style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="25dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="10dp"
                 android:layout_weight="1"
                 android:background="@drawable/btn"
                 android:drawableStart="@drawable/ic_back"
                 android:fontFamily="@font/reef"
                 android:paddingStart="5dp"
-                android:paddingEnd="10dp"
+                android:paddingEnd="20dp"
                 android:text="@string/textBackBtn"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                android:textStyle="bold" />
-
-            <Button
-                android:id="@+id/btnSkip"
-                style="?android:attr/buttonBarButtonStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:layout_weight="1"
-                android:background="@drawable/btn"
-                android:drawableEnd="@drawable/ic_skip"
-                android:fontFamily="@font/reef"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:text="@string/textSkipBtn"
+                android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textSize="16sp"
                 android:textStyle="bold" />
@@ -154,7 +140,8 @@
                 style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="25dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="20dp"
                 android:layout_weight="1"
                 android:background="@drawable/btn"
                 android:drawableEnd="@drawable/ic_next"
@@ -162,6 +149,7 @@
                 android:paddingStart="10dp"
                 android:paddingEnd="5dp"
                 android:text="@string/textNextBtn"
+                android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textSize="16sp"
                 android:textStyle="bold" />

@@ -1,20 +1,26 @@
 <resources>
     <string name="app_name">STesting</string>
     <string name="formatted_time">%02d:%02d</string>
-
     <string name="login_prompt">Выполните вход</string>
     <string name="welcome_message">Добро пожаловать, %1$s!</string>
     <string name="login_unsuccessful_msg">Вход не выполнен</string>
     <string name="login_successful_msg">Вход успешно выполнен</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="startTime">00:00</string>
     <string name="currentQuestion">0 / 10</string>
-    <string name="textBackBtn">back</string>
-    <string name="textSkipBtn">skip</string>
-    <string name="textNextBtn">next</string>
+    <string name="textBackBtn">Предыдущий</string>
+    <string name="textNextBtn">Следующий</string>
     <string name="titleResultTest">Результат теста:</string>
     <string name="scoreTest">0</string>
-    <string name="textRestartBtn">restart</string>
+    <string name="textRestartBtn">Повторить</string>
     <string name="textGoToMenuBtn">В меню</string>
     <string name="todo">TODO</string>
+    <string name="title_menuMain">Меню</string>
+    <string name="title_menuResult">Результаты</string>
+    <string name="title_menuStartTest">Пройти тест</string>
+    <string name="title_menuSetting">Настройки</string>
+    <string name="title_HeadNavMenu">Контакты</string>
+    <string name="title_support">Поддержка</string>
+    <string name="textdata">Дата:</string>
+    <string name="textScores">Баллы:</string>
+    <string name="versionApp">v. 0.0.16</string>
 </resources>

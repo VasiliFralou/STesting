@@ -7,11 +7,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import by.vfdev.stesting.R
 import by.vfdev.stesting.ViewModel.QuestionViewModel
+import kotlinx.android.synthetic.main.activity_stuff_testing.*
 import kotlinx.android.synthetic.main.fragment_main.*
 import kotlinx.android.synthetic.main.fragment_test.*
 import kotlinx.android.synthetic.main.header.*

@@ -23,10 +23,8 @@ import androidx.navigation.findNavController
 import androidx.room.Room
 import by.vfdev.stesting.LocalModel.QuestionImagesDatabase
 import by.vfdev.stesting.R
-import by.vfdev.stesting.RemoteModel.CurrentQuestion
+import by.vfdev.stesting.RemoteModel.Answer
 import by.vfdev.stesting.RemoteModel.Question
-import by.vfdev.stesting.RemoteModel.QuestionImages
-import by.vfdev.stesting.RemoteModel.UsersResult
 import by.vfdev.stesting.UI.StuffTestingActivity
 import by.vfdev.stesting.ViewModel.QuestionViewModel
 import kotlinx.android.synthetic.main.fragment_test.*
@@ -35,20 +33,19 @@ import kotlinx.android.synthetic.main.fragment_test.*
 class TestFragment : Fragment(), RadioGroup.OnCheckedChangeListener {
 
     private lateinit var question: Question
-    private lateinit var currentAnswer: CurrentQuestion
+    private lateinit var answer: Answer
     private lateinit var tvTimer: TextView
     private lateinit var rbGroupQuestion: RadioGroup
     private lateinit var viewModel: QuestionViewModel
-    private lateinit var answerChecked: String
 
     lateinit var navController: NavController
-    lateinit var questionImagesList: List<QuestionImages>
 
     // Default and the first question position
     private var currentQuestionPosition: Int = 1
     private var correctAnswers: Int = 0
     private var rnds: Int = 0
     private var maxSize: Int = 0
+    var answerChecked: String = null.toString()
 
     private val colorStateList = ColorStateList(arrayOf(
         intArrayOf(-android.R.attr.state_enabled),
@@ -75,7 +72,7 @@ class TestFragment : Fragment(), RadioGroup.OnCheckedChangeListener {
             .allowMainThreadQueries()
             .build()
 
-        questionImagesList = db.questionImagesDao().getAll()
+        viewModel.questionImagesList = db.questionImagesDao().getAll().toMutableList()
         maxSize = viewModel.questionList.size - 1
 
         initViews(view)
@@ -83,19 +80,19 @@ class TestFragment : Fragment(), RadioGroup.OnCheckedChangeListener {
         timerTest()
 
         btnNext.setOnClickListener {
-            nextQuestion(view)
+            nextQuestion()
         }
         btnBack.setOnClickListener {
             // backQuestion(view)
         }
-        btnSkip.setOnClickListener {
-            // skipQuestion(view)
-        }
         btnNavMenu.setOnClickListener{ v ->
-            (activity as StuffTestingActivity).openCloseNavigationDrawer(v)
+            (activity as StuffTestingActivity).openCloseNavigationDrawer()
         }
         rbGroupQuestion.setOnCheckedChangeListener { radioGroup, id ->
             val rb = view.findViewById<RadioButton>(id)
+            if (rb == null) {
+                answerChecked = null.toString()
+            }
             if (rb != null)
                 answerChecked = rb.text.toString()
         }
@@ -104,8 +101,7 @@ class TestFragment : Fragment(), RadioGroup.OnCheckedChangeListener {
     private fun getQuestion() {
         rbGroupQuestion.clearCheck()
         maxSize = viewModel.questionList.size - 1
-        Log.d("!!!maxSize", maxSize.toString())
-        rnds = (0..maxSize).random()
+        rnds = (46..maxSize).random()
         question = viewModel.questionList[rnds]!!
         setQuestion()
     }
@@ -120,8 +116,10 @@ class TestFragment : Fragment(), RadioGroup.OnCheckedChangeListener {
         progressBar.progress = currentQuestionPosition
         rightAns.text = "$currentQuestionPosition / 10"
         tvQuestion.text = question.QuestionText
+        checkImage(question.Id)
 
-        checkImage()
+        if (currentQuestionPosition == 10)
+            btnNext.text = "Завершить"
 
         val random = info.shuffled()
         rbGroupQuestion.removeAllViews()
@@ -141,17 +139,15 @@ class TestFragment : Fragment(), RadioGroup.OnCheckedChangeListener {
     }
 
     @SuppressLint("SetTextI18n")
-    private fun nextQuestion(view: View) {
+    private fun nextQuestion() {
         when {
             currentQuestionPosition < 10 -> {
                 currentQuestionPosition++
                 checkAnswer()
                 getQuestion()
+                Log.d("!!!", currentQuestionPosition.toString())
             }
-            currentQuestionPosition == 10 -> {
-                btnNext.text = "FINISH"
-                alertEndTest()
-            }
+            currentQuestionPosition == 10 -> alertEndTest()
         }
     }
 
@@ -161,15 +157,20 @@ class TestFragment : Fragment(), RadioGroup.OnCheckedChangeListener {
         }
     }
 
-    private fun checkImage() {
-        for (i in 1..questionImagesList.size)
-        if (question.Id == questionImagesList[i-1].id) {
-            val imgArray = questionImagesList[i-1].image
-            val bmp = BitmapFactory.decodeByteArray(imgArray, 0,imgArray.size)
-            imgQuestion.isVisible = true
-            imgQuestion.setImageBitmap(bmp)
-        } else {
-            imgQuestion.isVisible = false
+    private fun checkImage(idImgQuestion: Int?) {
+        val size = viewModel.questionImagesList.size - 1
+        for (i in 1..size) {
+            if (idImgQuestion == viewModel.questionImagesList[i].id) {
+
+                val imgArray = viewModel.questionImagesList[i].image
+                val bmp = BitmapFactory.decodeByteArray(imgArray, 0, imgArray.size)
+
+                imgQuestion.isVisible = true
+                imgQuestion.setImageBitmap(bmp)
+                break
+            } else {
+                imgQuestion.isVisible = false
+            }
         }
     }
 
@@ -213,12 +214,5 @@ class TestFragment : Fragment(), RadioGroup.OnCheckedChangeListener {
     }
 
     override fun onCheckedChanged(group: RadioGroup?, checkedId: Int) {
-        val checkedRadioButton = group?.findViewById(group.checkedRadioButtonId) as? RadioButton
-        checkedRadioButton?.let {
-            if (checkedRadioButton.isChecked) {
-                answerChecked = checkedRadioButton.text as String
-                Log.d("!!!AnswerChecked", answerChecked)
-            }
-        }
     }
 }
