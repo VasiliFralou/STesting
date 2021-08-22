@@ -24,6 +24,11 @@
         <entry key="..\:/ASProject/STesting/app/src/main/res/layout/item_page.xml" value="0.2222222222222222" />
         <entry key="..\:/ASProject/STesting/app/src/main/res/menu/drawer_menu.xml" value="0.36822916666666666" />
         <entry key="..\:/ASProject/STesting/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.384375" />
+        <entry key="..\:/ASProjects/STesting/app/src/main/res/layout/fragment_my_results.xml" value="0.15729166666666666" />
+        <entry key="..\:/ASProjects/STesting/app/src/main/res/layout/fragment_result_test.xml" value="0.15729166666666666" />
+        <entry key="..\:/ASProjects/STesting/app/src/main/res/layout/fragment_test.xml" value="0.2947916666666667" />
+        <entry key="..\:/ASProjects/STesting/app/src/main/res/layout/fragment_user_answer_list.xml" value="0.15729166666666666" />
+        <entry key="..\:/ASProjects/STesting/app/src/main/res/layout/item_answer_layout.xml" value="0.15729166666666666" />
       </map>
     </option>
   </component>

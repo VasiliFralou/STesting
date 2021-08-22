@@ -9,7 +9,7 @@ import by.vfdev.stesting.RemoteModel.UsersResult
 
 class QuestionViewModel: ViewModel() {
 
-    var TOTAL_TIME = 1*60*1000
+    var TOTAL_TIME = 2*60*1000
 
     val questionList = mutableListOf<Question?>()
     val newList = mutableListOf<Answer?>()

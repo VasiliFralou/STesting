@@ -15,6 +15,7 @@ import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.TextView
 import androidx.core.view.isVisible
+import androidx.core.view.marginTop
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
@@ -28,6 +29,7 @@ import by.vfdev.stesting.UI.StuffTestingActivity
 import by.vfdev.stesting.ViewModel.QuestionViewModel
 import kotlinx.android.synthetic.main.fragment_test.*
 import android.os.CountDownTimer as CountDownTimer
+import androidx.core.view.marginBottom as marginBottom
 
 class TestFragment : Fragment() {
 
@@ -94,8 +96,8 @@ class TestFragment : Fragment() {
 
     private fun nextQuestion(positionQuestion: Int) {
         when {
-            positionQuestion == 20 -> alertEndTest()
-            positionQuestion < 20 -> setNewQuestion(positionQuestion)
+            positionQuestion == 10 -> alertEndTest()
+            positionQuestion < 10 -> setNewQuestion(positionQuestion)
         }
     }
 
@@ -113,7 +115,7 @@ class TestFragment : Fragment() {
     private fun setNewQuestion(positionQuestion: Int) {
         btnBack.isVisible = positionQuestion != 0
 
-        if (positionQuestion == 19) btnNext.text = "Завершить"
+        if (positionQuestion == 9) btnNext.text = "Завершить"
         else btnNext.text = "Следующий"
 
         val positionList = positionQuestion + 1
@@ -153,7 +155,7 @@ class TestFragment : Fragment() {
         viewModel.newList.clear()
 
         val maxSize = viewModel.questionList.size - 1
-        for (i in 0..19) {
+        for (i in 0..9) {
             val rnds = (0..maxSize).random()
             question = viewModel.questionList[rnds]!!
             viewModel.newList.add(Answer(question.Id,
@@ -194,12 +196,12 @@ class TestFragment : Fragment() {
     private fun timerTest(timerTest: Boolean) {
         Log.d("!!!TimeTestGet", timerTest.toString())
         var timeTest = viewModel.TOTAL_TIME
-        val timer = object: CountDownTimer(timeTest.toLong(),1000) {
+        val timer = object: CountDownTimer(timeTest.toLong(),2000) {
             @SuppressLint("DefaultLocale")
             override fun onTick(interval: Long) {
                 tvTimer.text = String.format("%02d:%02d",
-                    interval / 60000, interval % 60000 / 1000)
-                timeTest -= 1000
+                    interval / 60000, interval % 60000 / 2000)
+                timeTest -= 2000
             }
             override fun onFinish() {
                 timerTest(false)

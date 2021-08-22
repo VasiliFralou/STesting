@@ -108,7 +108,7 @@
             android:layout_marginRight="15dp">
         </RadioGroup>
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
@@ -120,13 +120,13 @@
                 style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="10dp"
-                android:layout_weight="1"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="50dp"
+                android:layout_marginEnd="20dp"
                 android:background="@drawable/btn"
                 android:drawableStart="@drawable/ic_back"
                 android:fontFamily="@font/reef"
-                android:paddingStart="5dp"
+                android:paddingStart="10dp"
                 android:paddingEnd="20dp"
                 android:text="@string/textBackBtn"
                 android:textAllCaps="false"
@@ -139,20 +139,20 @@
                 style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
                 android:layout_marginStart="10dp"
-                android:layout_marginEnd="20dp"
-                android:layout_weight="1"
+                android:layout_marginEnd="50dp"
                 android:background="@drawable/btn"
                 android:drawableEnd="@drawable/ic_next"
                 android:fontFamily="@font/reef"
-                android:paddingStart="10dp"
-                android:paddingEnd="5dp"
+                android:paddingStart="20dp"
+                android:paddingEnd="10dp"
                 android:text="@string/textNextBtn"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textSize="16sp"
                 android:textStyle="bold" />
-        </LinearLayout>
+        </RelativeLayout>
 
     </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
