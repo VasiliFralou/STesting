@@ -1,7 +1,8 @@
 package by.vfdev.stesting.RemoteModel
 
-open class Answer (
-    var Id: Int? = null,
+open class Answer(
+    var Id: Int?,
+    var IdQuestion: Int?,
     var QuestionText: String? = null,
     var AnswerA: String? = null,
     var AnswerB: String? = null,

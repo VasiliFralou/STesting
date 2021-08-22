@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="startTime">00:00</string>
-    <string name="currentQuestion">0 / 10</string>
+    <string name="currentQuestion">0 / 20</string>
     <string name="textBackBtn">Предидущий</string>
     <string name="textNextBtn">Следующий</string>
     <string name="titleResultTest">Результат теста:</string>
@@ -16,5 +16,10 @@
     <string name="title_support">Поддержка</string>
     <string name="textdata">Дата:</string>
     <string name="textScores">Баллы:</string>
-    <string name="versionApp">v. 0.0.16</string>
+    <string name="versionApp">v. 0.0.17</string>
+    <string name="viewErrors">Просмотр ошибок</string>
+    <string name="titleMyResult">Мои результаты</string>
+    <string name="titleUserAnswerList">Ваши ответы</string>
+    <string name="titleYourAnswer">Ваш ответ:</string>
+    <string name="TitleCorrectAnswer">Правильный ответ</string>
 </resources>

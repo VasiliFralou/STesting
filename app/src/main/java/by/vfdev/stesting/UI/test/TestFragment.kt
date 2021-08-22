@@ -7,7 +7,6 @@ import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.graphics.Typeface
 import android.os.Bundle
-import android.os.CountDownTimer
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -28,24 +27,19 @@ import by.vfdev.stesting.RemoteModel.Question
 import by.vfdev.stesting.UI.StuffTestingActivity
 import by.vfdev.stesting.ViewModel.QuestionViewModel
 import kotlinx.android.synthetic.main.fragment_test.*
+import android.os.CountDownTimer as CountDownTimer
 
+class TestFragment : Fragment() {
 
-class TestFragment : Fragment(), RadioGroup.OnCheckedChangeListener {
-
+    private lateinit var viewModel: QuestionViewModel
     private lateinit var question: Question
-    private lateinit var answer: Answer
     private lateinit var tvTimer: TextView
     private lateinit var rbGroupQuestion: RadioGroup
-    private lateinit var viewModel: QuestionViewModel
 
     lateinit var navController: NavController
 
     // Default and the first question position
-    private var currentQuestionPosition: Int = 1
-    private var correctAnswers: Int = 0
-    private var rnds: Int = 0
-    private var maxSize: Int = 0
-    var answerChecked: String = null.toString()
+    private var positionQuestion: Int = 0
 
     private val colorStateList = ColorStateList(arrayOf(
         intArrayOf(-android.R.attr.state_enabled),
@@ -56,7 +50,9 @@ class TestFragment : Fragment(), RadioGroup.OnCheckedChangeListener {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         viewModel = ViewModelProvider(activity as StuffTestingActivity).get(QuestionViewModel::class.java)
-        viewModel.resultTest = 0
+
+        // Call function start timer
+        timerTest(true)
 
         return inflater.inflate(R.layout.fragment_test, container, false)
     }
@@ -73,53 +69,67 @@ class TestFragment : Fragment(), RadioGroup.OnCheckedChangeListener {
             .build()
 
         viewModel.questionImagesList = db.questionImagesDao().getAll().toMutableList()
-        maxSize = viewModel.questionList.size - 1
 
+        // Call function generation list question
+        generationListQuestions()
         initViews(view)
-        getQuestion()
-        timerTest()
+        setNewQuestion(positionQuestion)
 
         btnNext.setOnClickListener {
-            nextQuestion()
+            positionQuestion++
+            nextQuestion(positionQuestion)
         }
         btnBack.setOnClickListener {
-            // backQuestion(view)
+            positionQuestion--
+            backQuestion(positionQuestion)
         }
         btnNavMenu.setOnClickListener{ v ->
             (activity as StuffTestingActivity).openCloseNavigationDrawer()
         }
         rbGroupQuestion.setOnCheckedChangeListener { radioGroup, id ->
             val rb = view.findViewById<RadioButton>(id)
-            if (rb == null) {
-                answerChecked = null.toString()
-            }
-            if (rb != null)
-                answerChecked = rb.text.toString()
+            viewModel.newList[positionQuestion]?.CurrentAnswer = rb?.text?.toString() ?: null.toString()
         }
     }
 
-    private fun getQuestion() {
-        rbGroupQuestion.clearCheck()
-        maxSize = viewModel.questionList.size - 1
-        rnds = (46..maxSize).random()
-        question = viewModel.questionList[rnds]!!
-        setQuestion()
+    private fun nextQuestion(positionQuestion: Int) {
+        when {
+            positionQuestion == 20 -> alertEndTest()
+            positionQuestion < 20 -> setNewQuestion(positionQuestion)
+        }
     }
 
-    @SuppressLint("SetTextI18n", "ResourceAsColor")
-    private fun setQuestion() {
+    @SuppressLint("SetTextI18n")
+    private fun backQuestion(positionQuestion: Int) {
+        setNewQuestion(positionQuestion)
+    }
 
-        val info = arrayListOf(question.AnswerA,
-            question.AnswerB, question.AnswerC,
-            question.AnswerD, question.AnswerE)
+    private fun initViews(view: View) {
+        tvTimer = view.findViewById(R.id.tvTimer)
+        rbGroupQuestion = view.findViewById(R.id.rbGroupQuestion)
+    }
 
-        progressBar.progress = currentQuestionPosition
-        rightAns.text = "$currentQuestionPosition / 10"
-        tvQuestion.text = question.QuestionText
-        checkImage(question.Id)
+    @SuppressLint("SetTextI18n")
+    private fun setNewQuestion(positionQuestion: Int) {
+        btnBack.isVisible = positionQuestion != 0
 
-        if (currentQuestionPosition == 10)
-            btnNext.text = "Завершить"
+        if (positionQuestion == 19) btnNext.text = "Завершить"
+        else btnNext.text = "Следующий"
+
+        val positionList = positionQuestion + 1
+
+        val info = arrayListOf(
+            viewModel.newList[positionQuestion]?.AnswerA,
+            viewModel.newList[positionQuestion]?.AnswerB,
+            viewModel.newList[positionQuestion]?.AnswerC,
+            viewModel.newList[positionQuestion]?.AnswerD,
+            viewModel.newList[positionQuestion]?.AnswerE)
+
+        progressBar.progress = positionList
+        rightAns.text = "$positionList / 20"
+        tvQuestion.text = viewModel.newList[positionQuestion]?.QuestionText
+
+        checkImage(viewModel.newList[positionQuestion]?.Id)
 
         val random = info.shuffled()
         rbGroupQuestion.removeAllViews()
@@ -138,33 +148,30 @@ class TestFragment : Fragment(), RadioGroup.OnCheckedChangeListener {
         }
     }
 
-    @SuppressLint("SetTextI18n")
-    private fun nextQuestion() {
-        when {
-            currentQuestionPosition < 10 -> {
-                currentQuestionPosition++
-                checkAnswer()
-                getQuestion()
-                Log.d("!!!", currentQuestionPosition.toString())
-            }
-            currentQuestionPosition == 10 -> alertEndTest()
+    private fun generationListQuestions() {
+
+        viewModel.newList.clear()
+
+        val maxSize = viewModel.questionList.size - 1
+        for (i in 0..19) {
+            val rnds = (0..maxSize).random()
+            question = viewModel.questionList[rnds]!!
+            viewModel.newList.add(Answer(question.Id,
+                i+1, question.QuestionText,
+                question.AnswerA, question.AnswerB,
+                question.AnswerC, question.AnswerD,
+                question.AnswerE, question.CorrectAnswer))
         }
     }
 
-    private fun checkAnswer() {
-        if (question.CorrectAnswer == answerChecked) {
-            correctAnswers++
-        }
-    }
+    @SuppressLint("SetTextI18n")
 
     private fun checkImage(idImgQuestion: Int?) {
         val size = viewModel.questionImagesList.size - 1
         for (i in 1..size) {
             if (idImgQuestion == viewModel.questionImagesList[i].id) {
-
                 val imgArray = viewModel.questionImagesList[i].image
                 val bmp = BitmapFactory.decodeByteArray(imgArray, 0, imgArray.size)
-
                 imgQuestion.isVisible = true
                 imgQuestion.setImageBitmap(bmp)
                 break
@@ -174,32 +181,20 @@ class TestFragment : Fragment(), RadioGroup.OnCheckedChangeListener {
         }
     }
 
-    private fun finishTest() {
-        if (question.CorrectAnswer == answerChecked) {
-            correctAnswers++
-        }
-        viewModel.resultTest = correctAnswers
-        navController.navigate(R.id.resultTestFragment)
-    }
-
     private fun alertEndTest() {
         val dialogBuilder = AlertDialog.Builder(requireActivity())
             .setCancelable(false)
-            .setPositiveButton("Да") { dialog, id -> finishTest() }
+            .setPositiveButton("Да") { dialog, id -> timerTest(false) }
             .setNegativeButton("Нет") { dialog, id -> dialog.cancel() }
         val alert = dialogBuilder.create()
         alert.setTitle("Вы хотите завершить тест?")
         alert.show()
     }
 
-    private fun initViews(view: View) {
-        tvTimer = view.findViewById(R.id.tvTimer)
-        rbGroupQuestion = view.findViewById(R.id.rbGroupQuestion)
-    }
-
-    private fun timerTest() {
+    private fun timerTest(timerTest: Boolean) {
+        Log.d("!!!TimeTestGet", timerTest.toString())
         var timeTest = viewModel.TOTAL_TIME
-        object: CountDownTimer(timeTest.toLong(),1000) {
+        val timer = object: CountDownTimer(timeTest.toLong(),1000) {
             @SuppressLint("DefaultLocale")
             override fun onTick(interval: Long) {
                 tvTimer.text = String.format("%02d:%02d",
@@ -207,12 +202,14 @@ class TestFragment : Fragment(), RadioGroup.OnCheckedChangeListener {
                 timeTest -= 1000
             }
             override fun onFinish() {
-                viewModel.resultTest = correctAnswers
-                navController.navigate(R.id.resultTestFragment)
+                timerTest(false)
+                Log.d("!!!Ti_onFinish", timerTest.toString())
             }
         }.start()
-    }
-
-    override fun onCheckedChanged(group: RadioGroup?, checkedId: Int) {
+        if (!timerTest) {
+            timer.cancel()
+            Log.d("!!!TimerCancel", timerTest.toString())
+            navController.navigate(R.id.resultTestFragment)
+        }
     }
 }

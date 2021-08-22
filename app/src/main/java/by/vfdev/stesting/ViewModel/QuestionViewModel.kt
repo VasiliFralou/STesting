@@ -10,12 +10,13 @@ import by.vfdev.stesting.RemoteModel.UsersResult
 class QuestionViewModel: ViewModel() {
 
     var TOTAL_TIME = 1*60*1000
-    var resultTest: Int = 0
 
     val questionList = mutableListOf<Question?>()
-    val answerList = mutableListOf<Answer?>()
-    lateinit var questionImagesList: List<QuestionImages>
+    val newList = mutableListOf<Answer?>()
+    val userList = mutableListOf<UsersResult?>()
     val userScoresList = mutableListOf<UsersResult?>()
+    lateinit var questionImagesList: List<QuestionImages>
+
     var currentUser: String = ""
 
     companion object {

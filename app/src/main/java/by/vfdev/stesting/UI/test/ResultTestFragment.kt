@@ -30,10 +30,7 @@ class ResultTestFragment : Fragment() {
 
     lateinit var navController: NavController
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         viewModel = ViewModelProvider(activity as StuffTestingActivity).get(QuestionViewModel::class.java)
 
@@ -51,19 +48,29 @@ class ResultTestFragment : Fragment() {
 
         initViews(view)
 
+        val size = viewModel.newList.size - 1
+        var correctAnswers = 0
+
+        for (i in 0..size) {
+            if (viewModel.newList[i]?.CurrentAnswer == viewModel.newList[i]?.CorrectAnswer) {
+                correctAnswers++
+            }
+        }
+
         val user = viewModel.currentUser
-        val scores = viewModel.resultTest
-        tvResult.text = "$scores / 10"
+        val scores = correctAnswers
+        tvResult.text = "$scores / 20"
         val sdf = SimpleDateFormat("dd/M/yyyy hh:mm:ss")
         val date = sdf.format(Date())
 
-        var model = UsersResult(user, scores, date)
-        var id = reference.push().key
+        val model = UsersResult(user, scores, date)
+        val id = reference.push().key
 
         reference.child(id!!).setValue(model)
 
         btnRestart.setOnClickListener { navController.navigate(R.id.testFragment) }
         btnGoToMenu.setOnClickListener { navController.navigate(R.id.mainFragment) }
+        btnListAnswer.setOnClickListener { navController.navigate(R.id.userAnswerListFragment) }
     }
 
     private fun initViews(view: View) {

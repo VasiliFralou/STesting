@@ -2,6 +2,7 @@ package by.vfdev.stesting.UI
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import androidx.core.view.GravityCompat
 import androidx.lifecycle.ViewModelProvider
@@ -9,15 +10,19 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import by.vfdev.stesting.R
+import by.vfdev.stesting.RemoteModel.UsersResult
 import by.vfdev.stesting.ViewModel.MyFactory
 import by.vfdev.stesting.ViewModel.QuestionViewModel
 import com.google.android.material.navigation.NavigationView
+import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_stuff_testing.*
 
 class StuffTestingActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     lateinit var viewModel: QuestionViewModel
     lateinit var navController: NavController
+    private lateinit var dbref: DatabaseReference
+    private var data: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,6 +30,8 @@ class StuffTestingActivity : AppCompatActivity(), NavigationView.OnNavigationIte
         setContentView(R.layout.activity_stuff_testing)
 
         viewModel = ViewModelProvider(this, MyFactory.getInstance()).get(QuestionViewModel::class.java)
+
+        getUsersResultDara()
 
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.navHost) as NavHostFragment
         navController = navHostFragment.navController
@@ -55,6 +62,23 @@ class StuffTestingActivity : AppCompatActivity(), NavigationView.OnNavigationIte
                 else -> false
             }
         }
+    }
+
+    private fun getUsersResultDara() {
+        dbref = FirebaseDatabase.getInstance().getReference("Results")
+        dbref.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                data = true
+                if (snapshot.exists()) {
+                    viewModel.userScoresList.clear()
+                    for (scoresSnapshot in snapshot.children) {
+                        val scores = scoresSnapshot.getValue(UsersResult::class.java)
+                            viewModel.userScoresList.add(scores!!)
+                    }
+                }
+            }
+            override fun onCancelled(error: DatabaseError) {}
+        })
     }
 
     override fun onSupportNavigateUp(): Boolean {

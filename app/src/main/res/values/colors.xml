@@ -11,4 +11,6 @@
     <color name="firstBackground">#294363</color>
     <color name="mainColorBtn">#FF344D6A</color>
     <color name="rbColor">#22243346</color>
+    <color name="green">#4CAF50</color>
+    <color name="red">#F44336</color>
 </resources>

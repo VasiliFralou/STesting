@@ -18,7 +18,6 @@ class SplashScreen : AppCompatActivity() {
 
     lateinit var viewModel: QuestionViewModel
     private lateinit var dbref: DatabaseReference
-
     private var data: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,7 +27,6 @@ class SplashScreen : AppCompatActivity() {
         viewModel = ViewModelProvider(this, MyFactory.getInstance()).get(QuestionViewModel::class.java)
 
         getQuestionData()
-        getUsersResultDara()
 
         // This is used to hide the status bar and make the splash screen as a full screen activity.
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
@@ -53,24 +51,6 @@ class SplashScreen : AppCompatActivity() {
                     for (questionSnapshot in snapshot.children) {
                         val question = questionSnapshot.getValue(Question::class.java)
                         viewModel.questionList.add(question!!)
-
-                    }
-                }
-            }
-            override fun onCancelled(error: DatabaseError) {}
-        })
-    }
-
-    private fun getUsersResultDara() {
-        dbref = FirebaseDatabase.getInstance().getReference("Results")
-        dbref.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                data = true
-                if (snapshot.exists()) {
-                    viewModel.userScoresList.clear()
-                    for (scoresSnapshot in snapshot.children) {
-                        val scores = scoresSnapshot.getValue(UsersResult::class.java)
-                        viewModel.userScoresList.add(scores!!)
 
                     }
                 }

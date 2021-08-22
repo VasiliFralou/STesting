@@ -6,14 +6,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/mainBackground"
-    tools:context=".UI.results.MyResultsFragment">
-
+    tools:context=".UI.test.UserAnswerListFragment">
 
     <TextView
-        android:id="@+id/tvMyResult"
+        android:id="@+id/tvAnswerTitle"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:text="@string/titleMyResult"
+        android:text="@string/titleUserAnswerList"
         android:layout_marginTop="20dp"
         android:fontFamily="@font/reef"
         android:gravity="center"
@@ -23,7 +22,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvResultList"
+        android:id="@+id/rvAnswerList"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="20dp"
@@ -31,5 +30,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvMyResult" />
+        app:layout_constraintTop_toBottomOf="@+id/tvAnswerTitle" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

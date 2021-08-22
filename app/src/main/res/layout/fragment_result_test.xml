@@ -57,8 +57,8 @@
                 android:background="@drawable/btn"
                 android:drawableStart="@drawable/ic_restart"
                 android:fontFamily="@font/reef"
-                android:paddingLeft="15dp"
-                android:paddingRight="15dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
                 android:text="@string/textRestartBtn"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
@@ -75,14 +75,33 @@
                 android:background="@drawable/btn"
                 android:drawableStart="@drawable/ic_menu"
                 android:fontFamily="@font/reef"
-                android:paddingLeft="15dp"
-                android:paddingRight="15dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
                 android:text="@string/textGoToMenuBtn"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textSize="16sp"
                 android:textStyle="bold" />
         </LinearLayout>
+
+        <Button
+            android:id="@+id/btnListAnswer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="?android:attr/buttonBarButtonStyle"
+            android:background="@drawable/btn"
+            android:layout_gravity="center"
+            android:layout_margin="20dp"
+            android:paddingLeft="25dp"
+            android:paddingRight="25dp"
+            android:drawableStart="@drawable/ic_list"
+            android:fontFamily="@font/reef"
+            android:text="  Просмотр ошибок"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
 
     </LinearLayout>
 

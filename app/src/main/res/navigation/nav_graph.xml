@@ -22,6 +22,9 @@
         <action
             android:id="@+id/action_resultTestFragment_to_mainFragment"
             app:destination="@id/mainFragment" />
+        <action
+            android:id="@+id/action_resultTestFragment_to_userAnswerListFragment"
+            app:destination="@id/userAnswerListFragment" />
     </fragment>
     <fragment
         android:id="@+id/mainFragment"
@@ -83,4 +86,9 @@
         android:name="by.vfdev.stesting.UI.results.GlobalResultsFragment"
         android:label="fragment_global_results"
         tools:layout="@layout/fragment_global_results" />
+    <fragment
+        android:id="@+id/userAnswerListFragment"
+        android:name="by.vfdev.stesting.UI.test.UserAnswerListFragment"
+        android:label="fragment_user_answer_list"
+        tools:layout="@layout/fragment_user_answer_list" />
 </navigation>
