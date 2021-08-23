@@ -8,6 +8,18 @@
     android:background="@color/mainBackground"
     tools:context=".UI.test.UserAnswerListFragment">
 
+    <Button
+        android:id="@+id/btnAnswerListMenu"
+        android:layout_width="25dp"
+        android:layout_height="15dp"
+        android:layout_gravity="start"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/ic_btn_menu"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
     <TextView
         android:id="@+id/tvAnswerTitle"
         android:layout_width="wrap_content"

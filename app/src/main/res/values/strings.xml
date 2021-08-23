@@ -6,7 +6,7 @@
     <string name="login_unsuccessful_msg">Вход не выполнен</string>
     <string name="login_successful_msg">Вход успешно выполнен</string>
     <string name="startTime">00:00</string>
-    <string name="currentQuestion">0 / 20</string>
+    <string name="currentQuestion">0 / 10</string>
     <string name="textBackBtn">Предыдущий</string>
     <string name="textNextBtn">Следующий</string>
     <string name="titleResultTest">Результат теста:</string>

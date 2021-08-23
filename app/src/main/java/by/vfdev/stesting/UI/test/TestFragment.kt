@@ -28,12 +28,15 @@ import by.vfdev.stesting.RemoteModel.Question
 import by.vfdev.stesting.UI.StuffTestingActivity
 import by.vfdev.stesting.ViewModel.QuestionViewModel
 import kotlinx.android.synthetic.main.fragment_test.*
+import java.util.*
+import kotlin.concurrent.timer
 import android.os.CountDownTimer as CountDownTimer
 import androidx.core.view.marginBottom as marginBottom
 
 class TestFragment : Fragment() {
 
     private lateinit var viewModel: QuestionViewModel
+    private var countDownTimer: CountDownTimer? = null
     private lateinit var question: Question
     private lateinit var tvTimer: TextView
     private lateinit var rbGroupQuestion: RadioGroup
@@ -42,6 +45,7 @@ class TestFragment : Fragment() {
 
     // Default and the first question position
     private var positionQuestion: Int = 0
+    private var timeLeft: Long = 0
 
     private val colorStateList = ColorStateList(arrayOf(
         intArrayOf(-android.R.attr.state_enabled),
@@ -53,9 +57,6 @@ class TestFragment : Fragment() {
 
         viewModel = ViewModelProvider(activity as StuffTestingActivity).get(QuestionViewModel::class.java)
 
-        // Call function start timer
-        timerTest(true)
-
         return inflater.inflate(R.layout.fragment_test, container, false)
     }
 
@@ -63,6 +64,7 @@ class TestFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         navController = view.findNavController()
+        timeLeft = viewModel.TOTAL_TIME.toLong()
 
         val db = Room.databaseBuilder(requireActivity(),
             QuestionImagesDatabase::class.java, "STestingDB.db")
@@ -75,7 +77,8 @@ class TestFragment : Fragment() {
         // Call function generation list question
         generationListQuestions()
         initViews(view)
-        setNewQuestion(positionQuestion)
+        alertStartTest()
+        startCountDown()
 
         btnNext.setOnClickListener {
             positionQuestion++
@@ -128,7 +131,7 @@ class TestFragment : Fragment() {
             viewModel.newList[positionQuestion]?.AnswerE)
 
         progressBar.progress = positionList
-        rightAns.text = "$positionList / 20"
+        rightAns.text = "$positionList / 10"
         tvQuestion.text = viewModel.newList[positionQuestion]?.QuestionText
 
         checkImage(viewModel.newList[positionQuestion]?.Id)
@@ -169,6 +172,7 @@ class TestFragment : Fragment() {
     @SuppressLint("SetTextI18n")
 
     private fun checkImage(idImgQuestion: Int?) {
+        Log.d("!!!", idImgQuestion.toString())
         val size = viewModel.questionImagesList.size - 1
         for (i in 1..size) {
             if (idImgQuestion == viewModel.questionImagesList[i].id) {
@@ -183,35 +187,52 @@ class TestFragment : Fragment() {
         }
     }
 
+    private fun alertStartTest() {
+        val dialogBuilder = AlertDialog.Builder(requireActivity())
+            .setCancelable(false)
+            .setMessage("\nКол-во вопросов: 10 шт.\nВремя теста: 1 минута\n")
+            // Call function start timer
+            .setPositiveButton("Да") { dialog, id ->
+                countDownTimer?.start()
+                setNewQuestion(positionQuestion)
+            }
+            .setNegativeButton("Нет") { dialog, id -> navController.navigate(R.id.mainFragment) }
+        val alert = dialogBuilder.create()
+        alert.setTitle("Начать тест?")
+        alert.show()
+    }
+
     private fun alertEndTest() {
         val dialogBuilder = AlertDialog.Builder(requireActivity())
             .setCancelable(false)
-            .setPositiveButton("Да") { dialog, id -> timerTest(false) }
+            .setPositiveButton("Да") { dialog, id -> countDownTimer?.onFinish() }
             .setNegativeButton("Нет") { dialog, id -> dialog.cancel() }
         val alert = dialogBuilder.create()
         alert.setTitle("Вы хотите завершить тест?")
         alert.show()
     }
 
-    private fun timerTest(timerTest: Boolean) {
-        Log.d("!!!TimeTestGet", timerTest.toString())
-        var timeTest = viewModel.TOTAL_TIME
-        val timer = object: CountDownTimer(timeTest.toLong(),2000) {
-            @SuppressLint("DefaultLocale")
+    private fun startCountDown() {
+        countDownTimer = object: CountDownTimer(timeLeft,1000) {
             override fun onTick(interval: Long) {
-                tvTimer.text = String.format("%02d:%02d",
-                    interval / 60000, interval % 60000 / 2000)
-                timeTest -= 2000
+                timeLeft = interval
+                updateCountDown()
+                Log.d("!!!ON_TICK", String.format("%02d:%02d",
+                    interval / 60000, interval % 60000 / 1000))
             }
             override fun onFinish() {
-                timerTest(false)
-                Log.d("!!!Ti_onFinish", timerTest.toString())
+                updateCountDown()
+                timeLeft = 0
+                cancel()
+                navController.navigate(R.id.resultTestFragment)
             }
-        }.start()
-        if (!timerTest) {
-            timer.cancel()
-            Log.d("!!!TimerCancel", timerTest.toString())
-            navController.navigate(R.id.resultTestFragment)
         }
+    }
+    private fun updateCountDown() {
+        val min = (timeLeft / 1000).toInt() / 60
+        val sec = (timeLeft / 1000).toInt() % 60
+
+        val timeFormat = String.format(Locale.getDefault(), "%02d:%02d", min, sec)
+        tvTimer!!.text = timeFormat
     }
 }

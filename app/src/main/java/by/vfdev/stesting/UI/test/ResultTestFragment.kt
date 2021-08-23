@@ -8,9 +8,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
 import by.vfdev.stesting.R
 import by.vfdev.stesting.RemoteModel.UsersResult
 import by.vfdev.stesting.UI.StuffTestingActivity
@@ -59,7 +62,7 @@ class ResultTestFragment : Fragment() {
 
         val user = viewModel.currentUser
         val scores = correctAnswers
-        tvResult.text = "$scores / 20"
+        tvResult.text = "$scores / 10"
         val sdf = SimpleDateFormat("dd/M/yyyy hh:mm:ss")
         val date = sdf.format(Date())
 
