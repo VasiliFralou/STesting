@@ -41,7 +41,7 @@ class MyResultsFragment : Fragment() {
                     viewModel.userScoresList[i]?.date))
             }
         }
-        rvResultList.layoutManager = LinearLayoutManager(activity as StuffTestingActivity)
-        rvResultList.adapter = ResultAdapter(viewModel.userList, this)
+        rvMyResultList.layoutManager = LinearLayoutManager(activity as StuffTestingActivity)
+        rvMyResultList.adapter = ResultAdapter(viewModel.userList, this)
     }
 }

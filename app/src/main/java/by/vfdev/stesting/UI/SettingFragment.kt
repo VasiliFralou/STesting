@@ -12,7 +12,6 @@ import by.vfdev.stesting.R
 import by.vfdev.stesting.ViewModel.QuestionViewModel
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-import kotlinx.android.synthetic.main.fragment_results.*
 import kotlinx.android.synthetic.main.fragment_setting.*
 
 class SettingFragment : Fragment() {

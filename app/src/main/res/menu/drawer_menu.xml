@@ -24,13 +24,4 @@
             android:icon="@drawable/ic_settings"/>
     </group>
 
-    <item
-        android:title="@string/title_HeadNavMenu">
-        <menu>
-            <item
-                android:id="@+id/supportDeveloper"
-                android:title="@string/title_support"
-                android:icon="@drawable/ic_support"/>
-        </menu>
-    </item>
 </menu>

@@ -17,7 +17,6 @@ import by.vfdev.stesting.ViewModel.QuestionViewModel
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_stuff_testing.*
-import kotlinx.android.synthetic.main.header.*
 
 class StuffTestingActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -112,11 +111,12 @@ class StuffTestingActivity : AppCompatActivity(), NavigationView.OnNavigationIte
     override fun onBackPressed() {
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START)
-        } else if (navController.currentDestination?.id == R.id.resultTestFragment
-            || navController.currentDestination?.id == R.id.testFragment) {
+        }
+        if (navController.currentDestination?.id == R.id.testFragment
+            || navController.currentDestination?.id == R.id.resultTestFragment) {
             return
         }
-        // super.onBackPressed()
+        super.onBackPressed()
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {

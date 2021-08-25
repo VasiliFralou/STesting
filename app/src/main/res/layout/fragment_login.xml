@@ -39,7 +39,7 @@
             android:padding="20dp"
             android:fontFamily="@font/reef"
             android:background="@drawable/etext"
-            android:hint="Email"
+            android:hint="@string/emailHint"
             android:autofillHints=""
             android:inputType="textEmailAddress" />
 
@@ -55,17 +55,8 @@
             android:padding="20dp"
             android:fontFamily="@font/reef"
             android:background="@drawable/etext"
-            android:hint="Пароль"
+            android:hint="@string/passwordHint"
             android:autofillHints="" />
-
-        <TextView
-            android:id="@+id/tvForgotPassword"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/reef"
-            android:gravity="right"
-            android:text="Забыли пароль?"
-            tools:ignore="RtlHardcoded" />
 
         <Button
             android:id="@+id/btnLogin"
@@ -75,7 +66,7 @@
             android:layout_marginTop="30dp"
             android:background="@drawable/btn"
             android:fontFamily="@font/reef"
-            android:text="Войти"
+            android:text="@string/LogInTextBtn"
             android:textAllCaps="false"
             android:textStyle="bold" />
     </LinearLayout>

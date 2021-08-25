@@ -1,18 +1,14 @@
 package by.vfdev.stesting.UI.test
 
 import android.annotation.SuppressLint
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.cardview.widget.CardView
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import by.vfdev.stesting.R
 import by.vfdev.stesting.RemoteModel.Answer
-import kotlinx.android.synthetic.main.item_answer_layout.view.*
 
 class UserAnswerListAdapter(private val userAnswerList: MutableList<Answer?>, val fragment: UserAnswerListFragment):
     RecyclerView.Adapter<UserAnswerListAdapter.ViewHolder>() {
@@ -28,25 +24,21 @@ class UserAnswerListAdapter(private val userAnswerList: MutableList<Answer?>, va
 
     @SuppressLint("SetTextI18n", "ResourceAsColor", "CutPasteId")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        fun set() {
-            holder.itemView.findViewById<TextView>(R.id.tvTextQuestion).text = userAnswerList[position]?.QuestionText.toString()
-            holder.itemView.findViewById<TextView>(R.id.tvUserAnswer).text = userAnswerList[position]?.CurrentAnswer.toString()
-        }
-
         if (userAnswerList[position]?.CurrentAnswer == userAnswerList[position]?.CorrectAnswer) {
             holder.itemView.findViewById<TextView>(R.id.horizontalLine).isVisible = false
             holder.itemView.findViewById<TextView>(R.id.titleCurrentAnswer).isVisible = false
             holder.itemView.findViewById<TextView>(R.id.tvAnswerCorrect).isVisible = false
-            holder.itemView.findViewById<TextView>(R.id.tvAnswerCorrect).setTextColor(R.color.green)
+            holder.itemView.findViewById<TextView>(R.id.tvUserAnswer).text = userAnswerList[position]?.CurrentAnswer.toString()
             holder.itemView.findViewById<TextView>(R.id.tvNumberQuestion).text = "Вопрос " + userAnswerList[position]?.IdQuestion.toString() + " - Правильный!"
-            set()
+            holder.itemView.findViewById<TextView>(R.id.tvTextQuestion).text = userAnswerList[position]?.QuestionText.toString()
         } else {
             holder.itemView.findViewById<TextView>(R.id.horizontalLine).isVisible = true
             holder.itemView.findViewById<TextView>(R.id.titleCurrentAnswer).isVisible = true
             holder.itemView.findViewById<TextView>(R.id.tvAnswerCorrect).isVisible = true
             holder.itemView.findViewById<TextView>(R.id.tvNumberQuestion).text = "Вопрос " + userAnswerList[position]?.IdQuestion.toString() + " - Ошибка!"
             holder.itemView.findViewById<TextView>(R.id.tvAnswerCorrect).text = userAnswerList[position]?.CorrectAnswer.toString()
-            set()
+            holder.itemView.findViewById<TextView>(R.id.tvTextQuestion).text = userAnswerList[position]?.QuestionText.toString()
+            holder.itemView.findViewById<TextView>(R.id.tvUserAnswer).text = userAnswerList[position]?.CurrentAnswer.toString()
         }
     }
 

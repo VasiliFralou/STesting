@@ -7,7 +7,6 @@ import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.graphics.Typeface
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,7 +14,6 @@ import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.TextView
 import androidx.core.view.isVisible
-import androidx.core.view.marginTop
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
@@ -29,9 +27,7 @@ import by.vfdev.stesting.UI.StuffTestingActivity
 import by.vfdev.stesting.ViewModel.QuestionViewModel
 import kotlinx.android.synthetic.main.fragment_test.*
 import java.util.*
-import kotlin.concurrent.timer
 import android.os.CountDownTimer as CountDownTimer
-import androidx.core.view.marginBottom as marginBottom
 
 class TestFragment : Fragment() {
 
@@ -221,6 +217,7 @@ class TestFragment : Fragment() {
                 updateCountDown()
                 timeLeft = 0
                 cancel()
+                viewModel.endTest = true
                 navController.navigate(R.id.resultTestFragment)
             }
         }

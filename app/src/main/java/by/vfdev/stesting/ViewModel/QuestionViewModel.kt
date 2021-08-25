@@ -18,6 +18,7 @@ class QuestionViewModel: ViewModel() {
     lateinit var questionImagesList: List<QuestionImages>
 
     var currentUser: String = ""
+    var endTest: Boolean = false
 
     companion object {
         private var instance: QuestionViewModel? = null

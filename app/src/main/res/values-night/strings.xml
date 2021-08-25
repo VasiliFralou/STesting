@@ -16,7 +16,7 @@
     <string name="title_support">Поддержка</string>
     <string name="textdata">Дата:</string>
     <string name="textScores">Баллы:</string>
-    <string name="versionApp">v. 0.0.20</string>
+    <string name="versionApp">v. 0.0.21</string>
     <string name="viewErrors">Просмотр ошибок</string>
     <string name="titleMyResult">Мои результаты</string>
     <string name="titleUserAnswerList">Ваши ответы</string>
@@ -27,4 +27,9 @@
     <string name="inputNewPassword">Введите новый пароль</string>
     <string name="btnChangeText">Изменить</string>
     <string name="btnSignOutText">Выйти из профиля</string>
+    <string name="titleGlobalResult">Общие результаты</string>
+    <string name="userNickGlobal">Пользователь:</string>
+    <string name="emailHint">Email</string>
+    <string name="passwordHint">Пароль</string>
+    <string name="LogInTextBtn">Войти</string>
 </resources>

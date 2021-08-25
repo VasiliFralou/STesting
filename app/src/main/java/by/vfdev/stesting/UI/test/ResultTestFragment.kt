@@ -2,18 +2,14 @@ package by.vfdev.stesting.UI.test
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.NavHostFragment
 import by.vfdev.stesting.R
 import by.vfdev.stesting.RemoteModel.UsersResult
 import by.vfdev.stesting.UI.StuffTestingActivity
@@ -69,7 +65,10 @@ class ResultTestFragment : Fragment() {
         val model = UsersResult(user, scores, date)
         val id = reference.push().key
 
-        reference.child(id!!).setValue(model)
+        if (viewModel.endTest) {
+            reference.child(id!!).setValue(model)
+            viewModel.endTest = false
+        }
 
         btnRestart.setOnClickListener { navController.navigate(R.id.testFragment) }
         btnGoToMenu.setOnClickListener { navController.navigate(R.id.mainFragment) }
