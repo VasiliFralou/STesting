@@ -3,6 +3,7 @@ package by.vfdev.stesting.UI
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
@@ -53,9 +54,12 @@ class SplashScreen : AppCompatActivity() {
                         viewModel.questionList.add(question!!)
 
                     }
+                } else {
+                    Log.d("!!!!!!!!!!!!!!!!!!!", "Ошибка!!!!")
                 }
             }
-            override fun onCancelled(error: DatabaseError) {}
+            override fun onCancelled(error: DatabaseError) {
+            }
         })
     }
 }

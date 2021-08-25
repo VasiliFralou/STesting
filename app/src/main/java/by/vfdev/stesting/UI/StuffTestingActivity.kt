@@ -2,9 +2,10 @@ package by.vfdev.stesting.UI
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
+import android.view.View
 import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
@@ -16,6 +17,7 @@ import by.vfdev.stesting.ViewModel.QuestionViewModel
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_stuff_testing.*
+import kotlinx.android.synthetic.main.header.*
 
 class StuffTestingActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -31,7 +33,7 @@ class StuffTestingActivity : AppCompatActivity(), NavigationView.OnNavigationIte
 
         viewModel = ViewModelProvider(this, MyFactory.getInstance()).get(QuestionViewModel::class.java)
 
-        getUsersResultDara()
+        getUsersResultData()
 
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.navHost) as NavHostFragment
         navController = navHostFragment.navController
@@ -56,15 +58,29 @@ class StuffTestingActivity : AppCompatActivity(), NavigationView.OnNavigationIte
                     true
                 }
                 R.id.menuSetting -> {
+                    navController.navigate(R.id.settingFragment)
                     drawerLayout.closeDrawer(GravityCompat.START)
                     true
                 }
                 else -> false
             }
         }
+        drawerLayout.addDrawerListener(object: DrawerLayout.DrawerListener{
+            override fun onDrawerSlide(drawerView: View, slideOffset: Float) {}
+
+            override fun onDrawerOpened(drawerView: View) {}
+
+            override fun onDrawerClosed(drawerView: View) {}
+
+            override fun onDrawerStateChanged(newState: Int) {
+                if (navController.currentDestination?.id == R.id.loginFragment
+                    || navController.currentDestination?.id == R.id.mainFragment)
+                    drawerLayout.closeDrawer(GravityCompat.START)
+            }
+        })
     }
 
-    private fun getUsersResultDara() {
+    private fun getUsersResultData() {
         dbref = FirebaseDatabase.getInstance().getReference("Results")
         dbref.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -96,12 +112,11 @@ class StuffTestingActivity : AppCompatActivity(), NavigationView.OnNavigationIte
     override fun onBackPressed() {
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START)
-        } else {
-            if (navController.currentDestination?.id == R.id.resultTestFragment) {
-                return
-            }
+        } else if (navController.currentDestination?.id == R.id.resultTestFragment
+            || navController.currentDestination?.id == R.id.testFragment) {
+            return
         }
-        super.onBackPressed()
+        // super.onBackPressed()
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {

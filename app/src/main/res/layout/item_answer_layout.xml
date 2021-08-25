@@ -6,16 +6,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/mainBackground"
     app:cardCornerRadius="8dp"
+    android:id="@+id/cvListAnswer"
     android:layout_marginLeft="15dp"
     android:layout_marginRight="15dp"
     android:layout_marginTop="10dp">
 
     <LinearLayout
+        android:id="@+id/layoutListAnswer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
+        android:background="@color/firstBackground"
         android:orientation="vertical"
-        android:background="@color/firstBackground">
+        android:visibility="visible">
 
         <TextView
             android:id="@+id/tvNumberQuestion"
@@ -24,18 +27,18 @@
             android:layout_marginLeft="15dp"
             android:layout_marginTop="15dp"
             android:layout_marginRight="15dp"
-            android:textStyle="bold"
+            android:fontFamily="@font/reef"
             android:textSize="14sp"
-            android:fontFamily="@font/reef"/>
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tvTextQuestion"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
-            android:textStyle="bold"
+            android:fontFamily="@font/reef"
             android:textSize="14sp"
-            android:fontFamily="@font/reef" />
+            android:textStyle="bold" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -56,7 +59,7 @@
             android:layout_marginBottom="15dp"
             android:fontFamily="@font/reef"
             android:textColor="@color/red"
-            android:textSize="12sp"/>
+            android:textSize="12sp" />
 
         <View
             android:id="@+id/horizontalLine"
@@ -68,13 +71,13 @@
             android:id="@+id/titleCurrentAnswer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
             android:layout_marginRight="15dp"
             android:layout_marginBottom="10dp"
             android:fontFamily="@font/reef"
-            android:textSize="14sp"
-            android:text="@string/TitleCorrectAnswer" />
+            android:text="@string/TitleCorrectAnswer"
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/tvAnswerCorrect"
@@ -83,9 +86,9 @@
             android:layout_marginStart="20dp"
             android:layout_marginEnd="15dp"
             android:layout_marginBottom="15dp"
-            android:textColor="@color/green"
             android:fontFamily="@font/reef"
-            android:textSize="12sp"/>
+            android:textColor="@color/green"
+            android:textSize="12sp" />
 
     </LinearLayout>
 

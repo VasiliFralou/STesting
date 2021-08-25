@@ -20,9 +20,6 @@
         android:label="fragment_result_test"
         tools:layout="@layout/fragment_result_test" >
         <action
-            android:id="@+id/action_resultTestFragment_to_mainFragment"
-            app:destination="@id/mainFragment" />
-        <action
             android:id="@+id/action_resultTestFragment_to_userAnswerListFragment"
             app:destination="@id/userAnswerListFragment" />
     </fragment>
@@ -37,6 +34,9 @@
         <action
             android:id="@+id/action_mainFragment_to_resultsFragment"
             app:destination="@id/resultsFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_resultTestFragment"
+            app:destination="@id/resultTestFragment" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
@@ -45,18 +45,6 @@
         tools:layout="@layout/fragment_login" >
         <action
             android:id="@+id/action_loginFragment_to_mainFragment"
-            app:destination="@id/mainFragment" />
-        <action
-            android:id="@+id/action_loginFragment_to_registrationFragment"
-            app:destination="@id/registrationFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/registrationFragment"
-        android:name="by.vfdev.stesting.UI.auth.RegistrationFragment"
-        android:label="fragment_registration"
-        tools:layout="@layout/fragment_registration" >
-        <action
-            android:id="@+id/action_registrationFragment_to_mainFragment"
             app:destination="@id/mainFragment" />
     </fragment>
     <fragment
@@ -91,4 +79,13 @@
         android:name="by.vfdev.stesting.UI.test.UserAnswerListFragment"
         android:label="fragment_user_answer_list"
         tools:layout="@layout/fragment_user_answer_list" />
+    <fragment
+        android:id="@+id/settingFragment"
+        android:name="by.vfdev.stesting.UI.SettingFragment"
+        android:label="fragment_setting"
+        tools:layout="@layout/fragment_setting" >
+        <action
+            android:id="@+id/action_settingFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
 </navigation>

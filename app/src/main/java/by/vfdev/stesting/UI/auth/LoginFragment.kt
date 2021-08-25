@@ -45,13 +45,16 @@ class LoginFragment : Fragment() {
 
         navController = view.findNavController()
 
-        val currentuser = auth.currentUser
-        if(currentuser != null) {
+        val currentUser = auth.currentUser
+        if(currentUser != null) {
             navController.navigate(R.id.mainFragment)
             viewModel.currentUser = auth.currentUser?.email.toString()
         }
         btnLogin.setOnClickListener {
             login()
+        }
+        tvForgotPassword.setOnClickListener {
+            Toast.makeText(context,"Забыли пароль!", Toast.LENGTH_LONG).show()
         }
     }
 

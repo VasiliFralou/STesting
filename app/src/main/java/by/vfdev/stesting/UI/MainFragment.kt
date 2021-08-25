@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
@@ -43,6 +44,9 @@ class MainFragment : Fragment() {
         }
         btnResult.setOnClickListener {
             navController.navigate(R.id.resultsFragment)
+        }
+        btnSetting.setOnClickListener {
+            navController.navigate(R.id.settingFragment)
         }
     }
 }

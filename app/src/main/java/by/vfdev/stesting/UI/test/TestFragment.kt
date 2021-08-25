@@ -67,8 +67,8 @@ class TestFragment : Fragment() {
         timeLeft = viewModel.TOTAL_TIME.toLong()
 
         val db = Room.databaseBuilder(requireActivity(),
-            QuestionImagesDatabase::class.java, "STestingDB.db")
-            .createFromAsset("STestingDB.db")
+            QuestionImagesDatabase::class.java, "STDB.db")
+            .createFromAsset("STDB.db")
             .allowMainThreadQueries()
             .build()
 
@@ -114,8 +114,9 @@ class TestFragment : Fragment() {
         rbGroupQuestion = view.findViewById(R.id.rbGroupQuestion)
     }
 
-    @SuppressLint("SetTextI18n")
+    @SuppressLint("SetTextI18n", "ResourceType")
     private fun setNewQuestion(positionQuestion: Int) {
+        rbGroupQuestion.removeAllViews()
         btnBack.isVisible = positionQuestion != 0
 
         if (positionQuestion == 9) btnNext.text = "Завершить"
@@ -137,12 +138,11 @@ class TestFragment : Fragment() {
         checkImage(viewModel.newList[positionQuestion]?.Id)
 
         val random = info.shuffled()
-        rbGroupQuestion.removeAllViews()
+
         for (i in random.indices) {
             val newButton = RadioButton(requireActivity())
-            if (random[i] == null) {
+            if (random[i] == null)
                 newButton.isVisible = false
-            }
             newButton.text = random[i]
             newButton.tag = i.toString()
             newButton.buttonTintList = colorStateList
@@ -172,9 +172,8 @@ class TestFragment : Fragment() {
     @SuppressLint("SetTextI18n")
 
     private fun checkImage(idImgQuestion: Int?) {
-        Log.d("!!!", idImgQuestion.toString())
         val size = viewModel.questionImagesList.size - 1
-        for (i in 1..size) {
+        for (i in 0..size) {
             if (idImgQuestion == viewModel.questionImagesList[i].id) {
                 val imgArray = viewModel.questionImagesList[i].image
                 val bmp = BitmapFactory.decodeByteArray(imgArray, 0, imgArray.size)
@@ -217,8 +216,6 @@ class TestFragment : Fragment() {
             override fun onTick(interval: Long) {
                 timeLeft = interval
                 updateCountDown()
-                Log.d("!!!ON_TICK", String.format("%02d:%02d",
-                    interval / 60000, interval % 60000 / 1000))
             }
             override fun onFinish() {
                 updateCountDown()
@@ -228,11 +225,12 @@ class TestFragment : Fragment() {
             }
         }
     }
+
     private fun updateCountDown() {
         val min = (timeLeft / 1000).toInt() / 60
         val sec = (timeLeft / 1000).toInt() % 60
 
         val timeFormat = String.format(Locale.getDefault(), "%02d:%02d", min, sec)
-        tvTimer!!.text = timeFormat
+        tvTimer.text = timeFormat
     }
 }

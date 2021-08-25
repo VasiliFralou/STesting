@@ -16,10 +16,15 @@
     <string name="title_support">Поддержка</string>
     <string name="textdata">Дата:</string>
     <string name="textScores">Баллы:</string>
-    <string name="versionApp">v. 0.0.17</string>
+    <string name="versionApp">v. 0.0.20</string>
     <string name="viewErrors">Просмотр ошибок</string>
     <string name="titleMyResult">Мои результаты</string>
     <string name="titleUserAnswerList">Ваши ответы</string>
     <string name="titleYourAnswer">Ваш ответ:</string>
     <string name="TitleCorrectAnswer">Правильный ответ</string>
+    <string name="titleSetting">Учётная запись пользователя</string>
+    <string name="titleChangePass">Изменение пароля</string>
+    <string name="inputNewPassword">Введите новый пароль</string>
+    <string name="btnChangeText">Изменить</string>
+    <string name="btnSignOutText">Выйти из профиля</string>
 </resources>

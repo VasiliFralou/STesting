@@ -25,7 +25,7 @@ class ResultAdapter(private val list: MutableList<UsersResult?>, val fragment: M
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
             holder.itemView.findViewById<TextView>(R.id.tvData).text = list[position]?.date.toString()
-            holder.itemView.findViewById<TextView>(R.id.tvMyResultScore).text = list[position]?.scores.toString() + " / 20"
+            holder.itemView.findViewById<TextView>(R.id.tvMyResultScore).text = list[position]?.scores.toString() + " / 10"
     }
 
     override fun getItemCount(): Int {
